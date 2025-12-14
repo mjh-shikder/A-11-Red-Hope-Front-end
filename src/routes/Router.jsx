@@ -5,6 +5,8 @@ import Loading from "../pages/Loader";
 import ErrorPage from "../pages/ErrorPage";
 import Card from "../pages/ErrorPage";
 import Loader from "../pages/Loader";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -14,10 +16,20 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        hydrateFallbackElement: <Loader></Loader> ,
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {},
     ],
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+    hydrateFallbackElement: <Loader></Loader>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+    hydrateFallbackElement: <Loader></Loader>,
   },
   {
     path: "/*",

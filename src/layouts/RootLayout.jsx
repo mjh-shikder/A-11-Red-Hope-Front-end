@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import Container from "../components/Container";
+import { Toaster } from "react-hot-toast";
 
 const RootLayout = () => {
   return (
@@ -8,6 +9,7 @@ const RootLayout = () => {
       <Container>
         <Outlet></Outlet>
       </Container>
+      <Toaster></Toaster>
     </div>
   );
 };
