@@ -1,5 +1,7 @@
 import React from 'react';
 import useAuthContext from '../../hooks/useAuthContext';
+import Container from '../../components/Container';
+import Navbar from '../../components/Navbar';
 
 const Home = () => {
 
@@ -9,7 +11,9 @@ const Home = () => {
 
     return (
         <div>
-            Home
+            <Container>
+                <Navbar></Navbar>
+           </Container>
         </div>
     );
 };

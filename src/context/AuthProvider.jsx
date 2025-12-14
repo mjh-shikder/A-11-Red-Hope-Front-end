@@ -68,6 +68,7 @@ const AuthProvider = ({ children }) => {
     setShowPassword,
     typedEmail,
     setTypedEmail,
+    role,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;
