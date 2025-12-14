@@ -3,8 +3,8 @@ import useAuthContext from '../../hooks/useAuthContext';
 
 const Home = () => {
 
-    const data = useAuthContext()
-    console.log(data);
+    const {user} = useAuthContext()
+    console.log(user);
     
 
     return (

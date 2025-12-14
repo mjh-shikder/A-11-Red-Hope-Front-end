@@ -7,12 +7,17 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(true);
   const [typedEmail, setTypedEmail] = useState("");
+  const [role, setRole] = useState("");
+
+  console.log(role);
+  
 
   // Create user with email and password.
   const createUser = (email, password) => {
@@ -36,6 +41,15 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   });
+
+  // Get the Role from DB
+  useEffect(() => {
+    if (!user) return;
+    axios.get(`http://localhost:5000/users/role/${user.email}`).then((res) => {
+      setRole(res.data.role);
+    
+    });
+  }, [user]);
 
   // Logout
   const logout = () => {
