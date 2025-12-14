@@ -3,28 +3,33 @@ import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { Link } from "react-router";
+import axios from "axios";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
 
 const Register = () => {
-  const { setUser, showPassword, setShowPassword,createUser, } =
-        useAuthContext();
-    
-    const handleShowHidePassword = (e) => {
+  const { user, setUser, showPassword, setShowPassword, createUser } =
+    useAuthContext();
+
+  console.log(user);
+
+  const handleShowHidePassword = (e) => {
     e.preventDefault();
     setShowPassword(!showPassword);
-    };
-    
-     // email password registration 
-   const handleRegister = (e) => {
+  };
+
+  // email password registration
+  const handleRegister = async (e) => {
     e.preventDefault();
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-       const picture = e.target.picture;
-       const file = picture.files[0]
+    const picture = e.target.picture;
+    const file = picture.files[0];
 
-       console.log(file);
-       
+    // console.log(file);
 
-        // passwords validation
+    // passwords validation
     if (password.length < 5) {
       toast.error("Password must be at last 6 Charecters");
       return;
@@ -39,22 +44,50 @@ const Register = () => {
       toast.error("Password must contain at least one lowercase letter");
       return;
     }
-    
-       
 
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=182d20cdf18c4b37df6e1764dedce44a`,
+      { image: file },
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
 
-    createUser(email, password)
-      .then((res) => {
-        const user = res.user;
-        setUser(user);
-        toast.success("Registration Successful");
-        e.target.reset(); //later added
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+      const mainPhotoUrl = res.data.data.display_url;
+      
+      const formData = {
+          email, 
+          name,
+          mainPhotoUrl,
+          password,
+      }
+
+    if (res.data.success == true) {
+      createUser(email, password)
+        .then((res) => {
+          const user = res.user;
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: mainPhotoUrl,
+          });
+          setUser(user);
+            axios.post('http://localhost:5000/users', formData)
+                .then(res => {
+                console.log(res.data);
+                
+                })
+                .catch(err => {
+                toast.error(err)
+            })
+          toast.success("Registration Successful");
+          e.target.reset(); //later added
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    }
   };
-    
+
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto mt-40 mb-40">
       <div className="card-body">

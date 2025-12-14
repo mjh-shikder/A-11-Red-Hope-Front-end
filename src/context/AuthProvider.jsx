@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [typedEmail, setTypedEmail] = useState("");
 
   // Create user with email and password.
   const createUser = (email, password) => {
@@ -35,23 +36,24 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   });
-    
-        // Logout
+
+  // Logout
   const logout = () => {
     return signOut(auth);
-  }
+  };
 
-    const authData = { 
-        user,
-        setUser,
-        createUser,
-        userLogin,
-        logout,
-        loading,
-        setLoading,
-        showPassword,
-        setShowPassword,
-        
+  const authData = {
+    user,
+    setUser,
+    createUser,
+    userLogin,
+    logout,
+    loading,
+    setLoading,
+    showPassword,
+    setShowPassword,
+    typedEmail,
+    setTypedEmail,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;
