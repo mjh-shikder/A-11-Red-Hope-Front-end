@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
@@ -11,11 +11,32 @@ import useAxios from "../hooks/useAxios";
 const Register = () => {
   const { user, setUser, showPassword, setShowPassword, createUser } =
     useAuthContext();
-const axiosInstance = useAxios()
-  console.log(user);
 
-    const location = useLocation();
-    const navigate = useNavigate();
+  const [upazilas, setUpazilas] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [district, setDistrict] = useState('')
+  const [upazila, setUpazila] = useState('')
+
+  const axiosInstance = useAxios();
+  // console.log(user);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get("./upazila.json")
+      .then(res => {
+        // console.log(res.data.upazilas);
+        setUpazilas(res.data.upazilas);
+      })
+    
+    axios.get('./district.json')
+      .then(res => {
+        // console.log(res.data.districts);
+        setDistricts(res.data.districts);
+      
+    })
+  }, []);
 
   const handleShowHidePassword = (e) => {
     e.preventDefault();
@@ -30,6 +51,9 @@ const axiosInstance = useAxios()
     const password = e.target.password.value;
     const picture = e.target.picture;
     const file = picture.files[0];
+    const bloodGroup = e.target.bloodGroup.value;
+
+    console.log(bloodGroup);
 
     // console.log(file);
 
@@ -57,14 +81,22 @@ const axiosInstance = useAxios()
       }
     );
 
-      const mainPhotoUrl = res.data.data.display_url;
-      
-      const formData = {
-          email, 
-          name,
-          mainPhotoUrl,
-          password,
-      }
+    const mainPhotoUrl = res.data.data.display_url;
+
+    const formData = {
+      email,
+      name,
+      mainPhotoUrl,
+      password,
+      bloodGroup,
+      district,
+      upazila,
+    };
+
+    console.log(formData);
+    // return
+   
+    
 
     if (res.data.success == true) {
       createUser(email, password)
@@ -75,15 +107,15 @@ const axiosInstance = useAxios()
             photoURL: mainPhotoUrl,
           });
           setUser(user);
-            axiosInstance.post('/users', formData)
-                .then(res => {
-                console.log(res.data);
-                
-                })
-                .catch(err => {
-                toast.error(err)
+          axiosInstance
+            .post("/users", formData)
+            .then((res) => {
+              console.log(res.data);
             })
-          toast.success("Registration Successful");
+            .catch((err) => {
+              toast.error(err);
+            });
+          toast.success("Registration Complete");
           e.target.reset(); //later added
           navigate(location.state ? location.state : "/");
         })
@@ -119,12 +151,57 @@ const axiosInstance = useAxios()
             />
             {/* Photo url */}
             <label className="label">Picture</label>
-            <input
-              type="file"
-              className="input rounded-xl"
-              name="picture"
-              placeholder="Live link of your photo"
-            />
+            <input type="file" className="input rounded-xl  " name="picture" />
+            {/* Blood Group */}
+            <label className="label">Blood Gropu</label>
+            <select
+              name="bloodGroup"
+              defaultValue="Choose Blood Group"
+              className="select rounded-xl select-bordered "
+            >
+              <option value="">Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+            {/* Select District */}
+            <label className="label">Select District</label>
+            <select
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
+              name="bloodGroup"
+              className="select rounded-xl select-bordered "
+            >
+              <option value="">Select District</option>
+
+              {districts.map((d) => (
+                <option value={d?.name} key={d.id}>
+                  {d?.name}
+                </option>
+              ))}
+            </select>
+            {/* Select Upazilas */}
+            <label className="label">Select Upazila</label>
+            <select
+              value={upazila}
+              onChange={(e) => setUpazila(e.target.value)}
+              name="bloodGroup"
+              className="select rounded-xl select-bordered "
+            >
+              <option value="">Select Upazila</option>
+
+              {upazilas.map((u) => (
+                <option value={u?.name} key={u.id}>
+                  {u?.name}
+                </option>
+              ))}
+            </select>
+
             {/* Password Feild */}
             <label className="label">Password</label>
             <input
@@ -134,7 +211,7 @@ const axiosInstance = useAxios()
               placeholder="Password"
             />
             <button
-              className=" absolute top-62 right-6"
+              className=" absolute top-80 right-7"
               onClick={handleShowHidePassword}
             >
               {showPassword ? (
