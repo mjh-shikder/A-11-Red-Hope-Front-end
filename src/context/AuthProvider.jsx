@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
   const [typedEmail, setTypedEmail] = useState("");
   const [role, setRole] = useState("");
 
-  console.log(role);
+  
   
 
   // Create user with email and password.
@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
     if (!user) return;
     axios.get(`http://localhost:5000/users/role/${user.email}`).then((res) => {
       setRole(res.data.role);
-    
+ 
     });
   }, [user]);
 
@@ -55,6 +55,9 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     return signOut(auth);
   };
+
+  console.log('role:',role);
+  
 
   const authData = {
     user,

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, Links, NavLink } from "react-router";
 import logo from "../assets/logo.png";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logout } = useAuthContext();
-  const [showTooltip, setShowTooltip] = useState(false);
+  
 
   const handleLogout = () => {
     logout()
@@ -99,12 +99,13 @@ const Navbar = () => {
         <ul className=" space-x-5 px-1 flex items-center">{links}</ul>
       </div>
       <div className="navbar-end">
+        {/* Profile Avatar and DropDown */}
         {user ? (
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="m-1">
               <div className="avatar">
                 <div className="ring-primary ring-offset-base-100 w-11 rounded-full ring-2 ring-offset-2">
-                  <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+                  <img src={user?.photoURL} />
                 </div>
               </div>
             </div>
@@ -112,11 +113,18 @@ const Navbar = () => {
               tabIndex="-1"
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
-              <li>item 1</li>
-              <li>
+              <li className="flex items-center">
+                <Link
+                  to={"/dashboard"}
+                  className=" btn-accent rounded-xl mb-2.5 font-semibold "
+                >
+                  Dashboard
+                </Link>{" "}
+              </li>
+              <li className="flex items-center">
                 <button
                   onClick={handleLogout}
-                  className="btn btn-primary rounded-xl text-white "
+                  className=" btn-primary rounded-xl font-semibold text-primary  "
                 >
                   Logout
                 </button>

@@ -2,7 +2,7 @@ import React from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
@@ -12,6 +12,9 @@ const Register = () => {
     useAuthContext();
 
   console.log(user);
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
   const handleShowHidePassword = (e) => {
     e.preventDefault();
@@ -81,6 +84,7 @@ const Register = () => {
             })
           toast.success("Registration Successful");
           e.target.reset(); //later added
+          navigate(location.state ? location.state : "/");
         })
         .catch((error) => {
           toast.error(error.message);

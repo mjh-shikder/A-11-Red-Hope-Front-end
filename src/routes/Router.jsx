@@ -7,6 +7,8 @@ import Card from "../pages/ErrorPage";
 import Loader from "../pages/Loader";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MainDashboard from "../pages/dashboard/MainDashboard";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,18 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Loader></Loader>,
       },
       {},
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    hydrateFallbackElement: <Loader></Loader>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <MainDashboard></MainDashboard>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
     ],
   },
   {
