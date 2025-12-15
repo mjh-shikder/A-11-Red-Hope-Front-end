@@ -7,12 +7,10 @@ import Navbar from "../components/Navbar";
 const RootLayout = () => {
   return (
     <div className="bg-base-200 ">
-      <Container>
         <nav>
           <Navbar></Navbar>
         </nav>
         <Outlet></Outlet>
-      </Container>
       <Toaster></Toaster>
     </div>
   );
