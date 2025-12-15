@@ -6,11 +6,12 @@ import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxios from "../hooks/useAxios";
 
 const Register = () => {
   const { user, setUser, showPassword, setShowPassword, createUser } =
     useAuthContext();
-
+const axiosInstance = useAxios()
   console.log(user);
 
     const location = useLocation();
@@ -74,7 +75,7 @@ const Register = () => {
             photoURL: mainPhotoUrl,
           });
           setUser(user);
-            axios.post('http://localhost:5000/users', formData)
+            axiosInstance.post('/users', formData)
                 .then(res => {
                 console.log(res.data);
                 
