@@ -14,8 +14,12 @@ const Register = () => {
 
   const [upazilas, setUpazilas] = useState([]);
   const [districts, setDistricts] = useState([]);
-  const [district, setDistrict] = useState('')
-  const [upazila, setUpazila] = useState('')
+  const [district, setDistrict] = useState("");
+  const [upazila, setUpazila] = useState("");
+  const [blood, setBlood] = useState("");
+  const [error, setError] = useState("");
+  const [passowrd, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const axiosInstance = useAxios();
   // console.log(user);
@@ -24,18 +28,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("./upazila.json")
-      .then(res => {
-        // console.log(res.data.upazilas);
-        setUpazilas(res.data.upazilas);
-      })
-    
-    axios.get('./district.json')
-      .then(res => {
-        // console.log(res.data.districts);
-        setDistricts(res.data.districts);
-      
-    })
+    axios.get("./upazila.json").then((res) => {
+      // console.log(res.data.upazilas);
+      setUpazilas(res.data.upazilas);
+    });
+
+    axios.get("./district.json").then((res) => {
+      // console.log(res.data.districts);
+      setDistricts(res.data.districts);
+    });
   }, []);
 
   const handleShowHidePassword = (e) => {
@@ -48,7 +49,7 @@ const Register = () => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
-    const password = e.target.password.value;
+    // const password = e.target.password.value;
     const picture = e.target.picture;
     const file = picture.files[0];
     const bloodGroup = e.target.bloodGroup.value;
@@ -58,28 +59,35 @@ const Register = () => {
     // console.log(file);
 
     // passwords validation
-    if (password.length < 5) {
-      toast.error("Password must be at last 6 Charecters");
+    if (passowrd.length < 5) {
+      setError("Password must be at last 6 Charecters");
       return;
     }
 
-    if (!/[A-Z]/.test(password)) {
-      toast.error("Password must contain at least one uppercase letter");
+    if (!/[A-Z]/.test(passowrd)) {
+      setError("Password must contain at least one uppercase letter");
       return;
     }
 
-    if (!/[a-z]/.test(password)) {
-      toast.error("Password must contain at least one lowercase letter");
+    if (!/[a-z]/.test(passowrd)) {
+      setError("Password must contain at least one lowercase letter");
       return;
     }
+    if (passowrd !== confirmPassword) {
+      setError("Password Doesn't Match");
+      return
+    }
+    setError("");
 
-    const res = await axios.post(
-      `https://api.imgbb.com/1/upload?key=182d20cdf18c4b37df6e1764dedce44a`,
-      { image: file },
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
+    const res = await axios
+      .post(
+        `https://api.imgbb.com/1/upload?key=182d20cdf18c4b37df6e1764dedce44a`,
+        { image: file },
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
+      .catch((err) => console.log(err));
 
     const mainPhotoUrl = res.data.data.display_url;
 
@@ -87,19 +95,18 @@ const Register = () => {
       email,
       name,
       mainPhotoUrl,
-      password,
-      bloodGroup,
+      passowrd,
+      blood,
       district,
       upazila,
     };
 
     console.log(formData);
-    // return
-   
-    
+
+  
 
     if (res.data.success == true) {
-      createUser(email, password)
+      createUser(email, passowrd)
         .then((res) => {
           const user = res.user;
           updateProfile(auth.currentUser, {
@@ -140,6 +147,7 @@ const Register = () => {
               className="input rounded-xl"
               name="name"
               placeholder="Your Name"
+              required
             />
             {/* Email Feild */}
             <label className="label">Email</label>
@@ -148,15 +156,18 @@ const Register = () => {
               className="input rounded-xl"
               name="email"
               placeholder="Email"
+              required
             />
             {/* Photo url */}
             <label className="label">Picture</label>
-            <input type="file" className="input rounded-xl  " name="picture" />
+            <input type="file" className="input rounded-xl  " name="picture" required />
             {/* Blood Group */}
             <label className="label">Blood Gropu</label>
             <select
               name="bloodGroup"
-              defaultValue="Choose Blood Group"
+              value={blood}
+              required
+              onChange={(e) => setBlood(e.target.value)}
               className="select rounded-xl select-bordered "
             >
               <option value="">Select Blood Group</option>
@@ -175,6 +186,7 @@ const Register = () => {
               value={district}
               onChange={(e) => setDistrict(e.target.value)}
               name="bloodGroup"
+              required
               className="select rounded-xl select-bordered "
             >
               <option value="">Select District</option>
@@ -191,6 +203,7 @@ const Register = () => {
               value={upazila}
               onChange={(e) => setUpazila(e.target.value)}
               name="bloodGroup"
+              required
               className="select rounded-xl select-bordered "
             >
               <option value="">Select Upazila</option>
@@ -209,9 +222,12 @@ const Register = () => {
               className="input rounded-xl"
               name="password"
               placeholder="Password"
+              value={passowrd}
+              required
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
-              className=" absolute top-80 right-7"
+              className=" absolute top-114 right-7"
               onClick={handleShowHidePassword}
             >
               {showPassword ? (
@@ -220,7 +236,28 @@ const Register = () => {
                 <VscEyeClosed size={22}></VscEyeClosed>
               )}
             </button>
-            <div></div>
+            {/* Confirm Password Feild */}
+            <label className="label">Confirm Password</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              className="input rounded-xl"
+              name="confirm-password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <button
+              className=" absolute top-132 right-7"
+              onClick={handleShowHidePassword}
+            >
+              {showPassword ? (
+                <VscEye size={22}></VscEye>
+              ) : (
+                <VscEyeClosed size={22}></VscEyeClosed>
+              )}
+            </button>
+            <p className="text-primary">{error}</p>
             <button className="btn btn-primary mt-4 rounded-xl">
               Register
             </button>
