@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
 import axios from "axios";
+import useAxios from "../../hooks/useAxios";
+import toast from "react-hot-toast";
 
 const CreateDonationRequest = () => {
   const { user, upazilas, setUpazilas, districts, setDistricts } =
     useAuthContext();
   console.log(user);
+
+  const axiosInstance = useAxios();
 
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
@@ -25,6 +29,7 @@ const CreateDonationRequest = () => {
     const donationDate = form.donationDate.value;
     const donationTime = form.donationTime.value;
     const requestMessage = form.requestMessage.value;
+    const donationStatus = "pending";
 
     const formData = {
       requesterName,
@@ -38,10 +43,22 @@ const CreateDonationRequest = () => {
       donationDate,
       donationTime,
       requestMessage,
-      };
+      donationStatus,
+    };
 
-      console.log(formData);
-      
+    // console.log(formData);
+
+    axiosInstance
+      .post("/create-donaiton-request", formData)
+      .then((res) => {
+          toast.success("Request Submitted");
+          console.log(res.data);
+          
+          
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -58,7 +75,7 @@ const CreateDonationRequest = () => {
             name="requesterName"
             placeholder="Requester Name"
             value={user?.displayName}
-            className="input md:w-10/12 focus:outline-0 text-gray-500 rounded-xl"
+            className="input w-full focus:outline-0 text-gray-500 rounded-xl  "
             readOnly
           />
           {/* Requester Email */}
@@ -68,7 +85,7 @@ const CreateDonationRequest = () => {
             name="requesterEmail"
             placeholder="Requester Email"
             value={user?.email}
-            className="input md:w-10/12 focus:outline-0 text-gray-500 rounded-xl "
+            className="input w-full focus:outline-0 text-gray-500 rounded-xl "
             readOnly
           />
           {/* Recipient Name */}{" "}
@@ -77,7 +94,7 @@ const CreateDonationRequest = () => {
             type="text"
             name="recipientName"
             placeholder="Recipient Name"
-            className="input md:w-10/12 focus:outline-0 rounded-xl"
+            className="input w-full focus:outline-0 rounded-xl"
             required
           />
           {/* Recipient District */}
@@ -86,7 +103,7 @@ const CreateDonationRequest = () => {
             name="recipientDistrict"
             value={district}
             onChange={(e) => setDistrict(e.target.value)}
-            className="input md:w-10/12 focus:outline-0 select rounded-xl"
+            className="input w-full focus:outline-0 select rounded-xl"
             required
           >
             <option value="">Select District</option>
@@ -101,7 +118,7 @@ const CreateDonationRequest = () => {
             onChange={(e) => setUpazila(e.target.value)}
             name="recipientUpazila"
             required
-            className="select rounded-xl select-bordered "
+            className="select rounded-xl select-bordered w-full "
           >
             <option value="">Select Upazila</option>
 
@@ -117,7 +134,7 @@ const CreateDonationRequest = () => {
             type="text"
             name="hospitalName"
             placeholder="Hospital Name (e.g. Dhaka Medical College Hospital)"
-            className="input md:w-10/12 focus:outline-0 rounded-xl"
+            className="input w-full focus:outline-0 rounded-xl"
             required
           />
           {/* Full Address */}
@@ -126,14 +143,14 @@ const CreateDonationRequest = () => {
             type="text"
             name="fullAddress"
             placeholder="Full Address (e.g. Zahir Raihan Rd, Dhaka)"
-            className="input md:w-10/12 focus:outline-0 rounded-xl"
+            className="input w-full focus:outline-0 rounded-xl"
             required
           />
           {/* Blood Group */}
           <label className="label block">Blood Group</label>
           <select
             name="bloodGroup"
-            className="input select md:w-10/12 focus:outline-0 rounded-xl"
+            className="input select w-full focus:outline-0 rounded-xl"
             value={blood}
             onChange={(e) => setBlood(e.target.value)}
             required
@@ -153,7 +170,7 @@ const CreateDonationRequest = () => {
           <input
             type="date"
             name="donationDate"
-            className="input md:w-10/12 focus:outline-0 rounded-xl"
+            className="input w-full focus:outline-0 rounded-xl"
             required
           />
           {/* Donation Time */}
@@ -161,7 +178,7 @@ const CreateDonationRequest = () => {
           <input
             type="time"
             name="donationTime"
-            className="input md:w-10/12 focus:outline-0 rounded-xl"
+            className="input w-full focus:outline-0 rounded-xl"
             required
           />
           {/* Request Message */}
@@ -169,11 +186,11 @@ const CreateDonationRequest = () => {
           <textarea
             name="requestMessage"
             placeholder="Write details about why blood is needed..."
-            className="input h-32 md:w-10/12 focus:outline-0 rounded-xl"
+            className="input h-32 w-full focus:outline-0 rounded-xl"
             required
           />
           {/* Submit Button */}
-          <button className="md:w-10/12 w-full py-3 rounded-lg bg-primary hover:bg-secondary text-white font-medium ">
+          <button className="w-full w-full py-3 rounded-lg bg-primary hover:bg-secondary text-white font-medium ">
             Request Blood Donation
           </button>
         </form>

@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import axios from "axios";
+import useAxios from "../hooks/useAxios";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -15,21 +16,26 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [typedEmail, setTypedEmail] = useState("");
   const [role, setRole] = useState("");
-    const [upazilas, setUpazilas] = useState([]);
-    const [districts, setDistricts] = useState([]);
+  const [upazilas, setUpazilas] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [userFromDb, setUserFromDb] = useState('');
 
+  const axiosInstance = useAxios()
   useEffect(() => {
-    axios.get("./upazila.json").then((res) => {
+    axios.get("/upazila.json").then((res) => {
       // console.log(res.data.upazilas);
       setUpazilas(res.data.upazilas);
     });
 
-    axios.get("./district.json").then((res) => {
+    axios.get("/district.json").then((res) => {
       // console.log(res.data.districts);
       setDistricts(res.data.districts);
     });
   }, []);
-  
+
+  useEffect(() => {
+    axiosInstance.get()
+  },[])
 
   // Create user with email and password.
   const createUser = (email, password) => {
@@ -59,7 +65,6 @@ const AuthProvider = ({ children }) => {
     if (!user) return;
     axios.get(`http://localhost:5000/users/role/${user.email}`).then((res) => {
       setRole(res.data.role);
- 
     });
   }, [user]);
 
@@ -68,8 +73,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  console.log('role:',role);
-  
+  console.log("role:", role);
 
   const authData = {
     user,
