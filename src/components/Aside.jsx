@@ -7,9 +7,15 @@ import { FaHandHoldingDroplet } from "react-icons/fa6";
 import { ImUsers } from "react-icons/im";
 import logo from "../assets/redHope.png";
 import useAuthContext from "../hooks/useAuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
 
 const Aside = ({ children }) => {
   const { role } = useAuthContext();
+
+  const handleLogout = () => {
+    signOut(auth)
+  }
 
   return (
     <div className="drawer lg:drawer-open min-h-screen bg-base-100">
@@ -83,26 +89,31 @@ const Aside = ({ children }) => {
                 <GiWaterDrop size={20} /> My Donation Requests
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/create-donation-request"
-                className={({ isActive }) =>
-                  isActive ? " bg-primary text-white" : ""
-                }
-              >
-                <FaHandHoldingDroplet size={20} /> Create Donation Requests
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/all-users"
-                className={({ isActive }) =>
-                  isActive ? " bg-primary text-white" : ""
-                }
-              >
-                <ImUsers size={20} /> All Users
-              </NavLink>
-            </li>
+            {role == "donor" && (
+              <li>
+                <NavLink
+                  to="/dashboard/create-donation-request"
+                  className={({ isActive }) =>
+                    isActive ? " bg-primary text-white" : ""
+                  }
+                >
+                  <FaHandHoldingDroplet size={20} /> Create Donation Requests
+                </NavLink>
+              </li>
+            )}
+
+            {role == "admin" && (
+              <li>
+                <NavLink
+                  to="/dashboard/all-users"
+                  className={({ isActive }) =>
+                    isActive ? " bg-primary text-white" : ""
+                  }
+                >
+                  <ImUsers size={20} /> All Users
+                </NavLink>
+              </li>
+            )}
             <li className="mt-2">
               <span className="menu-title">Settings</span>
               <ul>
@@ -122,7 +133,7 @@ const Aside = ({ children }) => {
 
           {/* Footer actions */}
           <div className="p-4 border-t border-base-300">
-            <button className="btn btn-primary  btn-outline w-full">
+            <button onClick={handleLogout} className="btn btn-primary  btn-outline w-full">
               <LogOut className="w-4 h-4" /> Logout
             </button>
           </div>

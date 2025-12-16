@@ -5,11 +5,11 @@ import Loader from '../pages/Loader';
 
 const PrivateRoute = ({ children }) => {
 
-    const { user, loading } = useAuthContext()
+    const { user, loading, roleLoading } = useAuthContext();
     const location = useLocation();
 
-    if (loading) {
-        return <Loader></Loader>
+    if (loading || roleLoading) {
+      return <Loader></Loader>;
     }
 
     if (user) {

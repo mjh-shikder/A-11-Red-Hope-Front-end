@@ -16,9 +16,10 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [typedEmail, setTypedEmail] = useState("");
   const [role, setRole] = useState("");
+  const [roleLoading, setRoleLoading] = useState(true)
   const [upazilas, setUpazilas] = useState([]);
   const [districts, setDistricts] = useState([]);
-  const [userFromDb, setUserFromDb] = useState('');
+  
 
   const axiosInstance = useAxios()
   useEffect(() => {
@@ -33,9 +34,7 @@ const AuthProvider = ({ children }) => {
     });
   }, []);
 
-  useEffect(() => {
-    axiosInstance.get()
-  },[])
+
 
   // Create user with email and password.
   const createUser = (email, password) => {
@@ -65,6 +64,7 @@ const AuthProvider = ({ children }) => {
     if (!user) return;
     axios.get(`http://localhost:5000/users/role/${user.email}`).then((res) => {
       setRole(res.data.role);
+      setRoleLoading(false)
     });
   }, [user]);
 
@@ -92,6 +92,7 @@ const AuthProvider = ({ children }) => {
     setUpazilas,
     districts,
     setDistricts,
+    roleLoading,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;
