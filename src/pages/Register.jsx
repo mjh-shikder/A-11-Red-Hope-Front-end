@@ -9,11 +9,19 @@ import { auth } from "../firebase/firebase.config";
 import useAxios from "../hooks/useAxios";
 
 const Register = () => {
-  const { user, setUser, showPassword, setShowPassword, createUser } =
-    useAuthContext();
+  const {
+    user,
+    setUser,
+    showPassword,
+    setShowPassword,
+    createUser,
+    districts,
+    setDistricts,
+    upazilas,
+    setUpazilas,
+  } = useAuthContext();
 
-  const [upazilas, setUpazilas] = useState([]);
-  const [districts, setDistricts] = useState([]);
+  
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
   const [blood, setBlood] = useState("");
@@ -37,7 +45,7 @@ const Register = () => {
       // console.log(res.data.districts);
       setDistricts(res.data.districts);
     });
-  }, []);
+  }, [setDistricts, setUpazilas]);
 
   const handleShowHidePassword = (e) => {
     e.preventDefault();
@@ -185,7 +193,7 @@ const Register = () => {
             <select
               value={district}
               onChange={(e) => setDistrict(e.target.value)}
-              name="bloodGroup"
+              name="district"
               required
               className="select rounded-xl select-bordered "
             >
@@ -202,7 +210,7 @@ const Register = () => {
             <select
               value={upazila}
               onChange={(e) => setUpazila(e.target.value)}
-              name="bloodGroup"
+              name="upazila"
               required
               className="select rounded-xl select-bordered "
             >

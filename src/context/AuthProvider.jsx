@@ -15,8 +15,20 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [typedEmail, setTypedEmail] = useState("");
   const [role, setRole] = useState("");
+    const [upazilas, setUpazilas] = useState([]);
+    const [districts, setDistricts] = useState([]);
 
-  
+  useEffect(() => {
+    axios.get("./upazila.json").then((res) => {
+      // console.log(res.data.upazilas);
+      setUpazilas(res.data.upazilas);
+    });
+
+    axios.get("./district.json").then((res) => {
+      // console.log(res.data.districts);
+      setDistricts(res.data.districts);
+    });
+  }, []);
   
 
   // Create user with email and password.
@@ -72,6 +84,10 @@ const AuthProvider = ({ children }) => {
     typedEmail,
     setTypedEmail,
     role,
+    upazilas,
+    setUpazilas,
+    districts,
+    setDistricts,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;
