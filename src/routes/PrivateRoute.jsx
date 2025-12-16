@@ -5,15 +5,15 @@ import Loader from '../pages/Loader';
 
 const PrivateRoute = ({ children }) => {
 
-    const { user, loading, roleLoading } = useAuthContext();
+    const { user, loading, roleLoading, userStatus } = useAuthContext();
     const location = useLocation();
 
     if (loading || roleLoading) {
       return <Loader></Loader>;
     }
 
-    if (user) {
-        return children
+    if (user || userStatus == 'Active') {
+      return children;
     }
   return <Navigate state={location.pathname} to={'/login'} > </Navigate>
 };

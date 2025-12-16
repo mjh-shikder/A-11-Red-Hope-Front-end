@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
   const [roleLoading, setRoleLoading] = useState(true)
   const [upazilas, setUpazilas] = useState([]);
   const [districts, setDistricts] = useState([]);
+  const [userStatus, setUserStatus] = useState('')
   
 
   const axiosInstance = useAxios()
@@ -64,6 +65,7 @@ const AuthProvider = ({ children }) => {
     if (!user) return;
     axios.get(`http://localhost:5000/users/role/${user.email}`).then((res) => {
       setRole(res.data.role);
+      setUserStatus(res.data.status);
       setRoleLoading(false)
     });
   }, [user]);
@@ -93,6 +95,7 @@ const AuthProvider = ({ children }) => {
     districts,
     setDistricts,
     roleLoading,
+    userStatus,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;
