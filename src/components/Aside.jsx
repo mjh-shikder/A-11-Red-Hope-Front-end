@@ -1,13 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { Home, Users, Droplet, Settings, LogOut } from "lucide-react";
+import { GoHome} from "react-icons/go";
+import { GiWaterDrop } from "react-icons/gi";
+import { FaHandHoldingDroplet } from "react-icons/fa6";
 import logo from "../assets/redHope.png";
 import useAuthContext from "../hooks/useAuthContext";
 
-const Aside = ({children}) => {
-
-const {role }= useAuthContext()
-
+const Aside = ({ children }) => {
+  const { role } = useAuthContext();
 
   return (
     <div className="drawer lg:drawer-open min-h-screen bg-base-100">
@@ -53,7 +54,9 @@ const {role }= useAuthContext()
         <div className="w-72 min-h-full bg-base-200 text-base-content flex flex-col">
           {/* Brand */}
           <div className="px-6 py-5 border-b border-base-300">
-            <img className="md:w-28 w-20 " src={logo} alt="" />
+            <Link to={"/"}>
+              <img className="md:w-28 w-20 " src={logo} alt="" />
+            </Link>
             <p className="text-sm opacity-70">{role} Dashboard</p>
           </div>
 
@@ -61,26 +64,33 @@ const {role }= useAuthContext()
           <ul className="menu p-4 gap-1 flex-1">
             <li>
               <NavLink
-                to="/dashboard"
-                className={({ isActive }) => (isActive ? "active" : "")}
+                to="/dashboard/home"
+                className={({ isActive }) =>
+                  isActive ? "bg-primary text-white" : "bg-base-200"
+                }
               >
-                <Home className="w-4 h-4" /> Overview
+                <GoHome size={20} /> Home
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/dashboard/donors"
-                className={({ isActive }) => (isActive ? "active" : "")}
+                to="my-donation-requests"
+                className={({ isActive }) =>
+                  isActive ? " bg-primary text-white" : "bg-base-200"
+                }
               >
-                <Users className="w-4 h-4" /> Donors
+                 <GiWaterDrop size={20} /> My
+                Donation Requests
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/dashboard/requests"
-                className={({ isActive }) => (isActive ? "active" : "")}
+                to="/dashboard/create-donation-request"
+                className={({ isActive }) =>
+                  isActive ? " bg-primary text-white" : ""
+                }
               >
-                <Droplet className="w-4 h-4" /> Requests
+                <FaHandHoldingDroplet size={20} /> Create Donation Requests
               </NavLink>
             </li>
             <li className="mt-2">
@@ -89,7 +99,9 @@ const {role }= useAuthContext()
                 <li>
                   <NavLink
                     to="/dashboard/settings"
-                    className={({ isActive }) => (isActive ? "active" : "")}
+                    className={({ isActive }) =>
+                      isActive ? " bg-primary" : "bg-base-200 "
+                    }
                   >
                     <Settings className="w-4 h-4" /> Preferences
                   </NavLink>

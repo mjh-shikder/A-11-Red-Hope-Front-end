@@ -8,7 +8,9 @@ import Loader from "../pages/Loader";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
-import MainDashboard from "../pages/dashboard/MainDashboard";
+import AddRequest from "../pages/dashboard/CreateDonationRequest";
+import DashboardHome from "../pages/dashboard/DashboardHome";
+import MyDonationRequest from "../pages/dashboard/MyDonationRequest";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,16 @@ const router = createBrowserRouter([
         element: <Home></Home>,
         hydrateFallbackElement: <Loader></Loader>,
       },
-      {},
+      {
+        path: "/login",
+        element: <Login></Login>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
     ],
   },
   {
@@ -29,22 +40,23 @@ const router = createBrowserRouter([
     hydrateFallbackElement: <Loader></Loader>,
     children: [
       {
-        path: "/dashboard",
-        element: <MainDashboard></MainDashboard>,
+        path: "/dashboard/home",
+        element: <DashboardHome></DashboardHome>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "create-donation-request",
+        element: <AddRequest></AddRequest>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "my-donation-requests",
+        element: <MyDonationRequest></MyDonationRequest>,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],
   },
-  {
-    path: "/login",
-    element: <Login></Login>,
-    hydrateFallbackElement: <Loader></Loader>,
-  },
-  {
-    path: "/register",
-    element: <Register></Register>,
-    hydrateFallbackElement: <Loader></Loader>,
-  },
+
   {
     path: "/*",
     element: <ErrorPage></ErrorPage>,
