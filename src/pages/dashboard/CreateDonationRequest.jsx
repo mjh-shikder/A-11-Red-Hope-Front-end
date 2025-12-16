@@ -7,16 +7,41 @@ const CreateDonationRequest = () => {
     useAuthContext();
   console.log(user);
 
-
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
   const [blood, setBlood] = useState("");
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Donation Request Data:");
+    const form = e.target;
+    const requesterName = form.requesterName.value;
+    const requesterEmail = form.requesterEmail.value;
+    const recipientName = form.recipientName.value;
+    const recipientDistrict = district;
+    const recipientUpazila = upazila;
+    const hospitalName = form.hospitalName.value;
+    const fullAddress = form.fullAddress.value;
+    const bloodGroup = blood;
+    const donationDate = form.donationDate.value;
+    const donationTime = form.donationTime.value;
+    const requestMessage = form.requestMessage.value;
+
+    const formData = {
+      requesterName,
+      requesterEmail,
+      recipientName,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      fullAddress,
+      bloodGroup,
+      donationDate,
+      donationTime,
+      requestMessage,
+      };
+
+      console.log(formData);
+      
   };
 
   return (
@@ -33,7 +58,7 @@ const CreateDonationRequest = () => {
             name="requesterName"
             placeholder="Requester Name"
             value={user?.displayName}
-            className="input md:w-10/12 focus:outline-0 text-gray-500"
+            className="input md:w-10/12 focus:outline-0 text-gray-500 rounded-xl"
             readOnly
           />
           {/* Requester Email */}
@@ -43,7 +68,7 @@ const CreateDonationRequest = () => {
             name="requesterEmail"
             placeholder="Requester Email"
             value={user?.email}
-            className="input md:w-10/12 focus:outline-0 text-gray-500 "
+            className="input md:w-10/12 focus:outline-0 text-gray-500 rounded-xl "
             readOnly
           />
           {/* Recipient Name */}{" "}
@@ -52,7 +77,7 @@ const CreateDonationRequest = () => {
             type="text"
             name="recipientName"
             placeholder="Recipient Name"
-            className="input md:w-10/12 focus:outline-0"
+            className="input md:w-10/12 focus:outline-0 rounded-xl"
             required
           />
           {/* Recipient District */}
@@ -74,7 +99,7 @@ const CreateDonationRequest = () => {
           <select
             value={upazila}
             onChange={(e) => setUpazila(e.target.value)}
-            name="upazila"
+            name="recipientUpazila"
             required
             className="select rounded-xl select-bordered "
           >
@@ -92,7 +117,7 @@ const CreateDonationRequest = () => {
             type="text"
             name="hospitalName"
             placeholder="Hospital Name (e.g. Dhaka Medical College Hospital)"
-            className="input md:w-10/12 focus:outline-0"
+            className="input md:w-10/12 focus:outline-0 rounded-xl"
             required
           />
           {/* Full Address */}
@@ -101,14 +126,14 @@ const CreateDonationRequest = () => {
             type="text"
             name="fullAddress"
             placeholder="Full Address (e.g. Zahir Raihan Rd, Dhaka)"
-            className="input md:w-10/12 focus:outline-0"
+            className="input md:w-10/12 focus:outline-0 rounded-xl"
             required
           />
           {/* Blood Group */}
           <label className="label block">Blood Group</label>
           <select
             name="bloodGroup"
-            className="input select md:w-10/12 focus:outline-0"
+            className="input select md:w-10/12 focus:outline-0 rounded-xl"
             value={blood}
             onChange={(e) => setBlood(e.target.value)}
             required
@@ -128,7 +153,7 @@ const CreateDonationRequest = () => {
           <input
             type="date"
             name="donationDate"
-            className="input md:w-10/12 focus:outline-0"
+            className="input md:w-10/12 focus:outline-0 rounded-xl"
             required
           />
           {/* Donation Time */}
@@ -136,7 +161,7 @@ const CreateDonationRequest = () => {
           <input
             type="time"
             name="donationTime"
-            className="input md:w-10/12 focus:outline-0"
+            className="input md:w-10/12 focus:outline-0 rounded-xl"
             required
           />
           {/* Request Message */}
@@ -144,7 +169,7 @@ const CreateDonationRequest = () => {
           <textarea
             name="requestMessage"
             placeholder="Write details about why blood is needed..."
-            className="input h-32 md:w-10/12 focus:outline-0"
+            className="input h-32 md:w-10/12 focus:outline-0 rounded-xl"
             required
           />
           {/* Submit Button */}
