@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
-import axios from "axios";
-import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const CreateDonationRequest = () => {
-  const { user, upazilas, setUpazilas, districts, setDistricts } =
+  const { user, upazilas, districts,  } =
     useAuthContext();
   console.log(user);
 
-  const axiosInstance = useAxios();
+  
+    const axiosSecure = useAxiosSecure()
 
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
@@ -48,13 +48,12 @@ const CreateDonationRequest = () => {
 
     // console.log(formData);
 
-    axiosInstance
+    axiosSecure
       .post("/create-donaiton-request", formData)
       .then((res) => {
-          toast.success("Request Submitted");
-          console.log(res.data);
-          
-          
+        toast.success("Request Submitted");
+        console.log(res.data);
+        e.target.reset();
       })
       .catch((err) => {
         console.log(err);
