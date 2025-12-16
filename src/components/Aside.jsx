@@ -4,6 +4,7 @@ import { Home, Users, Droplet, Settings, LogOut } from "lucide-react";
 import { GoHome} from "react-icons/go";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaHandHoldingDroplet } from "react-icons/fa6";
+import { ImUsers } from "react-icons/im";
 import logo from "../assets/redHope.png";
 import useAuthContext from "../hooks/useAuthContext";
 
@@ -79,8 +80,7 @@ const Aside = ({ children }) => {
                   isActive ? " bg-primary text-white" : "bg-base-200"
                 }
               >
-                 <GiWaterDrop size={20} /> My
-                Donation Requests
+                <GiWaterDrop size={20} /> My Donation Requests
               </NavLink>
             </li>
             <li>
@@ -91,6 +91,16 @@ const Aside = ({ children }) => {
                 }
               >
                 <FaHandHoldingDroplet size={20} /> Create Donation Requests
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/all-users"
+                className={({ isActive }) =>
+                  isActive ? " bg-primary text-white" : ""
+                }
+              >
+                <ImUsers size={20} /> All Users
               </NavLink>
             </li>
             <li className="mt-2">

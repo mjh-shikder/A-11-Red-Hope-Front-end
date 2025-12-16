@@ -11,6 +11,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AddRequest from "../pages/dashboard/CreateDonationRequest";
 import DashboardHome from "../pages/dashboard/DashboardHome";
 import MyDonationRequest from "../pages/dashboard/MyDonationRequest";
+import AllUsers from "../pages/dashboard/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
       {
         path: "my-donation-requests",
         element: <MyDonationRequest></MyDonationRequest>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers></AllUsers>,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],
