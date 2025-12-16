@@ -12,6 +12,7 @@ import AddRequest from "../pages/dashboard/CreateDonationRequest";
 import DashboardHome from "../pages/dashboard/DashboardHome";
 import MyDonationRequest from "../pages/dashboard/MyDonationRequest";
 import AllUsers from "../pages/dashboard/AllUsers";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     hydrateFallbackElement: <Loader></Loader>,
     children: [
       {

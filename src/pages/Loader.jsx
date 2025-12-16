@@ -23,9 +23,9 @@ const Loader = () => {
 const StyledWrapper = styled.div`
   .loader {
     --main-size: 4em;
-    --text-color: #ffffff;
-    --shine-color: #ffffff40;
-    --shadow-color: #aaaaaa;
+    --text-color: #c72829;
+    --shine-color: #a21d20;
+    --shadow-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,8 +115,7 @@ const StyledWrapper = styled.div`
   }
 
   .loader .text span {
-    animation:
-      scrolling 2s cubic-bezier(0.1, 0.6, 0.9, 0.4) infinite,
+    animation: scrolling 2s cubic-bezier(0.1, 0.6, 0.9, 0.4) infinite,
       shadow 2s cubic-bezier(0.1, 0.6, 0.9, 0.4) infinite;
   }
 
@@ -268,6 +267,7 @@ const StyledWrapper = styled.div`
     100% {
       background-position: 102% 0;
     }
-  }`;
+  }
+`;
 
 export default Loader;

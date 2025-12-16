@@ -189,7 +189,7 @@ const CreateDonationRequest = () => {
             required
           />
           {/* Submit Button */}
-          <button className="w-full w-full py-3 rounded-lg bg-primary hover:bg-secondary text-white font-medium ">
+          <button className="w-full py-3 rounded-lg bg-primary hover:bg-secondary text-white font-medium ">
             Request Blood Donation
           </button>
         </form>
