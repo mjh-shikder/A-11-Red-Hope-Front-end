@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import { CiMenuKebab } from "react-icons/ci";
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
@@ -14,7 +14,7 @@ const AllUsers = () => {
 
   useEffect(() => {
     fetchUsers()
-  }, [axiosSecure]);
+  }, []);
 
   console.log(allUsers);
 
@@ -38,7 +38,8 @@ const AllUsers = () => {
               <th>Contact & Location</th>
 
               <th>Status</th>
-              <th>Action</th>
+              <th>Edit Status</th>
+              <th>More</th>
             </tr>
           </thead>
           <tbody>
@@ -98,6 +99,28 @@ const AllUsers = () => {
                       Active
                     </button>
                   )}
+                </th>
+                <th>
+                  <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className=" m-1">
+                      <CiMenuKebab size={20} />
+                    </div>
+                    <ul
+                      tabIndex="-1"
+                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                    >
+                      <li>
+                        <button className="text-gray-600 bg-base-200 hover:bg-accent hover:text-white">
+                          Make Volunteer
+                        </button>
+                      </li>
+                      <li>
+                        <button className="text-gray-600 bg-base-200 hover:bg-accent hover:text-white">
+                          Make Admin
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </th>
               </tr>
             ))}

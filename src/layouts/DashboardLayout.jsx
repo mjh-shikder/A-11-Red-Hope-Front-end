@@ -9,6 +9,7 @@ const DashboardLayout = () => {
 
       <Aside>
         <Outlet></Outlet>
+        
       </Aside>
 
       <div className="flex-1 p-5"></div>
