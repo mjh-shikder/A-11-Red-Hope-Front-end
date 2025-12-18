@@ -16,6 +16,8 @@ import PrivateRoute from "./PrivateRoute";
 import Funding from "../pages/Funding";
 import DonationRequests from "../pages/DonationRequests";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import PymentCancel from "../pages/PaymentCancel";
+import PaymentCancel from "../pages/PaymentCancel";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PaymentSuccess></PaymentSuccess>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/payment-cancelled",
+        element:  (
+          <PrivateRoute>
+            <PaymentCancel></PaymentCancel>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loader></Loader>,
