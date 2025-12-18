@@ -15,11 +15,11 @@ const PrivateRoute = ({ children }) => {
   //   if (user || userStatus == 'Active') {
   //     return children;
   // }
-  if (userStatus == "Active") {
+  if (userStatus === "Active") {
     return children;
   } 
 
-  if (userStatus == "Blocked") {
+  if (userStatus === "Blocked") {
     return (
       <div className='flex justify-center items-center min-h-dvh '>
         <p className="text-secondary text-center font-bold  text-2xl border  inline px-2 py-2 rounded-2xl ">
