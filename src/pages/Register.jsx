@@ -152,7 +152,7 @@ const Register = () => {
             <label className="label">Name</label>
             <input
               type="text"
-              className="input rounded-xl"
+              className="input rounded-xl focus:outline-0"
               name="name"
               placeholder="Your Name"
               required
@@ -161,14 +161,19 @@ const Register = () => {
             <label className="label">Email</label>
             <input
               type="email"
-              className="input rounded-xl"
+              className="input rounded-xl focus:outline-0"
               name="email"
               placeholder="Email"
               required
             />
             {/* Photo url */}
             <label className="label">Picture</label>
-            <input type="file" className="input rounded-xl  " name="picture" required />
+            <input
+              type="file"
+              className="input rounded-xl focus:outline-0 "
+              name="picture"
+              required
+            />
             {/* Blood Group */}
             <label className="label">Blood Gropu</label>
             <select
@@ -176,7 +181,7 @@ const Register = () => {
               value={blood}
               required
               onChange={(e) => setBlood(e.target.value)}
-              className="select rounded-xl select-bordered "
+              className="select rounded-xl select-bordered focus:outline-0"
             >
               <option value="">Select Blood Group</option>
               <option value="A+">A+</option>
@@ -195,7 +200,7 @@ const Register = () => {
               onChange={(e) => setDistrict(e.target.value)}
               name="district"
               required
-              className="select rounded-xl select-bordered "
+              className="select rounded-xl select-bordered focus:outline-0 "
             >
               <option value="">Select District</option>
 
@@ -212,7 +217,7 @@ const Register = () => {
               onChange={(e) => setUpazila(e.target.value)}
               name="upazila"
               required
-              className="select rounded-xl select-bordered "
+              className="select rounded-xl select-bordered focus:outline-0 "
             >
               <option value="">Select Upazila</option>
 
@@ -227,7 +232,7 @@ const Register = () => {
             <label className="label">Password</label>
             <input
               type={showPassword ? "text" : "password"}
-              className="input rounded-xl"
+              className="input rounded-xl focus:outline-0"
               name="password"
               placeholder="Password"
               value={passowrd}
@@ -248,7 +253,7 @@ const Register = () => {
             <label className="label">Confirm Password</label>
             <input
               type={showPassword ? "text" : "password"}
-              className="input rounded-xl"
+              className="input rounded-xl focus:outline-0"
               name="confirm-password"
               placeholder="Confirm Password"
               value={confirmPassword}

@@ -38,12 +38,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/funding",
-        element: <Funding></Funding> ,
+        element: (
+          <PrivateRoute>
+            <Funding></Funding>
+          </PrivateRoute>
+        ),
         hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/donation-requests",
-        element: <DonationRequests></DonationRequests> ,
+        element: <DonationRequests></DonationRequests>,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],
