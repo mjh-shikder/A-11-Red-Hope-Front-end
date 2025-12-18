@@ -8,7 +8,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import axios from "axios";
-import useAxios from "../hooks/useAxios";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,7 +21,6 @@ const AuthProvider = ({ children }) => {
   const [userStatus, setUserStatus] = useState('')
   
 
-  const axiosInstance = useAxios()
   useEffect(() => {
     axios.get("/upazila.json").then((res) => {
       // console.log(res.data.upazilas);
@@ -96,6 +94,7 @@ const AuthProvider = ({ children }) => {
     setDistricts,
     roleLoading,
     userStatus,
+
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;
