@@ -15,6 +15,7 @@ import AllUsers from "../pages/dashboard/AllUsers";
 import PrivateRoute from "./PrivateRoute";
 import Funding from "../pages/Funding";
 import DonationRequests from "../pages/DonationRequests";
+import PaymentSuccess from "../pages/PaymentSuccess";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Funding></Funding>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/payment-success",
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess></PaymentSuccess>
           </PrivateRoute>
         ),
         hydrateFallbackElement: <Loader></Loader>,
