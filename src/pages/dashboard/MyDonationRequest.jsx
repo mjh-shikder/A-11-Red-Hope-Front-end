@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const MyDonationRequest = () => {
   const [myRequest, setMyRequest] = useState([]);
@@ -59,7 +60,7 @@ const MyDonationRequest = () => {
             {/* row  */}
             {myRequest.map((request, index) => (
               <tr>
-                <th>{index + 1}</th>
+                <th>{currentPage * 10 + (index + 1) - 10}</th>
                 <td>{request.recipientName}</td>
                 <td>
                   {request.recipientDistrict}, {request.recipientUpazila}
@@ -83,12 +84,22 @@ const MyDonationRequest = () => {
                 <button className="btn">Next</button>
             </div> */}
       <div className="join flex items-center justify-center mt-6">
-
-        <button onClick={handlePrev} className="btn rounded-l-xl">prev</button>
+        <button onClick={handlePrev} className="btn rounded-l-xl">
+          <FaArrowLeft />
+        </button>
         {pages.map((page) => (
-            <button onClick={()=> setCurrentPage(page)} className={`btn ${page=== currentPage ? 'bg-primary text-white' : ''}`}>{page}</button>
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={`btn ${
+              page === currentPage ? "bg-primary text-white" : ""
+            }`}
+          >
+            {page}
+          </button>
         ))}
-        <button onClick={handleNext} className="btn rounded-r-xl">Next</button>
+        <button onClick={handleNext} className="btn rounded-r-xl">
+          <FaArrowRight />
+        </button>
       </div>
     </div>
   );
