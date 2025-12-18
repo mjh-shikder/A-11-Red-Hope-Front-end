@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link, Links, NavLink } from "react-router";
 import logo from "../assets/logo.png";
 import useAuthContext from "../hooks/useAuthContext";
@@ -36,7 +35,7 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
-          to={"/all-toys"}
+          to={"/donation-requests"}
           className={({ isActive }) =>
             isActive
               ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
@@ -49,14 +48,14 @@ const Navbar = () => {
       <li>
         {" "}
         <NavLink
-          to={"/profile"}
+          to={"/funding"}
           className={({ isActive }) =>
             isActive
               ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
               : "text-secondary font-semibold"
           }
         >
-          Funding Links
+          Funding
         </NavLink>{" "}
       </li>
     </>

@@ -12,9 +12,7 @@ const Home = () => {
 
     return (
         <div>
-            <Container className={"md:px-0 px-2"}>
-              <Footer></Footer>
-           </Container>
+            Home page
         </div>
     );
 };

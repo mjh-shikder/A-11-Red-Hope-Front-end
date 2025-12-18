@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import Container from "../components/Container";
 import { Toaster } from "react-hot-toast";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const RootLayout = () => {
   return (
@@ -12,7 +13,10 @@ const RootLayout = () => {
           <Navbar></Navbar>
         </Container>
       </nav>
+      <Container className={"md:px-0 px-2"}>
       <Outlet></Outlet>
+        <Footer></Footer>
+      </Container>
       <Toaster></Toaster>
     </div>
   );

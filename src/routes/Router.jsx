@@ -13,6 +13,8 @@ import DashboardHome from "../pages/dashboard/DashboardHome";
 import MyDonationRequest from "../pages/dashboard/MyDonationRequest";
 import AllUsers from "../pages/dashboard/AllUsers";
 import PrivateRoute from "./PrivateRoute";
+import Funding from "../pages/Funding";
+import DonationRequests from "../pages/DonationRequests";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,16 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/funding",
+        element: <Funding></Funding> ,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/donation-requests",
+        element: <DonationRequests></DonationRequests> ,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],
