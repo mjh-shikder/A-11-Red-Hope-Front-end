@@ -1,64 +1,97 @@
-import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router";
 
 const MyDonationRequest = () => {
+  const [myRequest, setMyRequest] = useState([]);
+  const [totalRequest, setTotalRequest] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const axiosSecure = useAxiosSecure();
+  const itemsPerPage = 10;
 
-    const [myRequest, setMyRequest] = useState([])
-    const [totalRequest, setTotalRequest] = useState(0)
-    const [currentPage, setCurrentPage]= useState(1)
-    const axiosSecure = useAxiosSecure()
-    const itemsPerPage = 10
+  useEffect(() => {
+    axiosSecure
+      .get(`/my-donation-request?page=${currentPage - 1}&size=${itemsPerPage}`)
+      .then((res) => {
+        setMyRequest(res.data.request);
+        setTotalRequest(res.data.totalRequest);
+      });
+  }, [axiosSecure, currentPage, itemsPerPage]);
 
-    useEffect(() => {
-        axiosSecure.get(`/my-donation-request?page=${currentPage-1}&size=${itemsPerPage}`)
-            .then(res => {
-                setMyRequest(res.data.request)
-                setTotalRequest(res.data.totalRequest)
-            
-        })
-    }, [axiosSecure, currentPage, itemsPerPage])
-    
-    const numberOfPages = Math.ceil(totalRequest / itemsPerPage);
-    const pages = [...Array(numberOfPages).keys()].map(e=> e+1)
+  const numberOfPages = Math.ceil(totalRequest / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()].map((e) => e + 1);
 
-    console.log(myRequest);
-    console.log(totalRequest);
-    console.log(numberOfPages);
+  console.log(myRequest);
+  console.log(totalRequest);
+  console.log(numberOfPages);
     console.log(pages);
     
-    
 
-    return (
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
+    const handlePrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage -1)
+        }
+    }
+
+    const handleNext = () => {
+        if (currentPage < pages.length) {
+            setCurrentPage(currentPage +1)
+        }
+    }
+
+  return (
+    <div>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Recipient Name</th>
+              <th>Location</th>
+              <th>Blood Group</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row  */}
+            {myRequest.map((request, index) => (
               <tr>
-                <th></th>
-                <th>Recipient Name</th>
-                <th>Location</th>
-                <th>Blood Group</th>
+                <th>{index + 1}</th>
+                <td>{request.recipientName}</td>
+                <td>
+                  {request.recipientDistrict}, {request.recipientUpazila}
+                </td>
+                <td>{request.bloodGroup}</td>
+                <td>{request.donationDate}</td>
+                <td>{request.donationTime}</td>
+                <td>
+                  <Link className="btn btn-sm btn-accent text-white">View</Link>{" "}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {/* row  */}
-              {myRequest.map((request, index) => (
-                <tr>
-                  <th>{index + 1}</th>
-                  <td>{request.recipientName}</td>
-                  <td>
-                    {request.recipientDistrict}, {request.recipientUpazila}
-                  </td>
-                  <td>{request.bloodGroup}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        prev 1 2 3 4 nex
+            ))}
+          </tbody>
+        </table>
       </div>
-    );
+      {/* <div>
+                <button className="btn">Prev</button>
+                {
+                    pages.map(page => <button>{page}</button>)
+                }
+                <button className="btn">Next</button>
+            </div> */}
+      <div className="join flex items-center justify-center mt-6">
+
+        <button onClick={handlePrev} className="btn rounded-l-xl">prev</button>
+        {pages.map((page) => (
+            <button onClick={()=> setCurrentPage(page)} className={`btn ${page=== currentPage ? 'bg-primary text-white' : ''}`}>{page}</button>
+        ))}
+        <button onClick={handleNext} className="btn rounded-r-xl">Next</button>
+      </div>
+    </div>
+  );
 };
 
 export default MyDonationRequest;
