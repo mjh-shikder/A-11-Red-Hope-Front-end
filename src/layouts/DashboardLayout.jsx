@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import Aside from "../components/Aside";
+import { Toaster } from "react-hot-toast";
 
 const DashboardLayout = () => {
   return (
@@ -12,7 +13,7 @@ const DashboardLayout = () => {
         
       </Aside>
 
-      <div className="flex-1 p-5"></div>
+     <Toaster></Toaster>
     </div>
   );
 };
