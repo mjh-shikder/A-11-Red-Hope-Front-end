@@ -1,44 +1,22 @@
 import React, { useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router";
-import useAuthContext from "../hooks/useAuthContext";
+import { Link, useSearchParams} from "react-router";
 import useAxios from "../hooks/useAxios";
 
 const PaymentSuccess = () => {
-//     const { user, fundAmount } = useAuthContext();
-    
-    
 
-//   console.log( 'fund amount:', fundAmount);
+    const [searchParams] = useSearchParams();
+    const sessionId = searchParams.get('session_id');
 
-//   const axiosInstance = useAxios();
+    const axiosInstance = useAxios()
 
- 
-    
-    // useEffect(() => {
-
-    //      const donorEmail = user?.email;
-    //      const donorName = user?.displayName;
-
-    //      const fundDonatorData = { donorEmail, donorName, fundAmount };
-
-    //     if (!donorEmail || !fundAmount) return; 
-        
-    //     axiosInstance
-    //       .post("/fund-donator-info", fundDonatorData)
-    //       .then((res) => {
-    //         console.log(res.data);
-    //       })
-    //         .catch(err => {
-    //         console.log(err);
-            
-    //     })
-
-
-    // },[])
-          
+    console.log(sessionId);
     
 
-  
+    useEffect(() => {
+        axiosInstance.post(`/success-payment?session_id=${sessionId}`)
+        .then(res=>{console.log(res.data)})
+    },[axiosInstance, sessionId])
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">

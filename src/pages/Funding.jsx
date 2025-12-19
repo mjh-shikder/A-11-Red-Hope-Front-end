@@ -5,7 +5,7 @@ import useAuthContext from '../hooks/useAuthContext';
 const Funding = () => {
 
     const axiosInstance = useAxios()
-    const { user, setFundAmount, fundAmount } = useAuthContext();
+    const { user } = useAuthContext();
     
     
 
@@ -25,14 +25,14 @@ const Funding = () => {
         axiosInstance.post("/create-payment-checkout", formData)
             .then(res => {
                 console.log(res.data)
-                window.open(res.data.url);
+                window.location.replace(res.data.url);
         })
 
 
 
     }
 
-    console.log('funding page:', fundAmount);
+  
     
 
     return (

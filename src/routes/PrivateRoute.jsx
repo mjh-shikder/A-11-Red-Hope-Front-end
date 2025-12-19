@@ -5,7 +5,7 @@ import Loader from '../pages/Loader';
 
 const PrivateRoute = ({ children }) => {
 
-    const { user, loading, roleLoading, userStatus } = useAuthContext();
+    const { loading, roleLoading, userStatus } = useAuthContext();
     const location = useLocation();
 
     if (loading || roleLoading ) {
