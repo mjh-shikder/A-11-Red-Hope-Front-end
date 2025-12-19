@@ -10,7 +10,6 @@ import useAxios from "../hooks/useAxios";
 
 const Register = () => {
   const {
-    user,
     setUser,
     showPassword,
     setShowPassword,

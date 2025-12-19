@@ -2,6 +2,7 @@ import { Link, Links, NavLink } from "react-router";
 import logo from "../assets/logo.png";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
+import { BiSearchAlt } from "react-icons/bi";
 
 const Navbar = () => {
   const { user, logout } = useAuthContext();
@@ -43,6 +44,19 @@ const Navbar = () => {
           }
         >
           Donation Requests
+        </NavLink>{" "}
+      </li>
+      <li>
+        {" "}
+        <NavLink
+          to={"/search"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold flex items-center gap-0.5 "
+              : "text-secondary font-semibold flex items-center gap-0.5"
+          }
+        >
+          <BiSearchAlt size={18} /> Search
         </NavLink>{" "}
       </li>
       <li>

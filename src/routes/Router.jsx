@@ -18,6 +18,7 @@ import DonationRequests from "../pages/DonationRequests";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import PymentCancel from "../pages/PaymentCancel";
 import PaymentCancel from "../pages/PaymentCancel";
+import SearchPage from "../pages/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
       {
         path: "/donation-requests",
         element: <DonationRequests></DonationRequests>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/search",
+        element: <SearchPage></SearchPage>,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],
