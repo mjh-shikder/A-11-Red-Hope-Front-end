@@ -16,9 +16,9 @@ const RootLayout = () => {
 
       <Outlet></Outlet>
 
-      <Container className={"md:px-0 px-2"}>
+     
         <Footer></Footer>
-      </Container>
+      
 
       <Toaster></Toaster>
     </div>
