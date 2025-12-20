@@ -53,6 +53,7 @@ const SearchPage = () => {
           <select
             name="bloodGroup"
             value={blood}
+            required
             onChange={(e) => setBlood(e.target.value)}
             className="select rounded-xl select-bordered focus:outline-0"
           >
