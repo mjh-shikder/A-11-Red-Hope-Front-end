@@ -3,22 +3,26 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import Container from "../components/Container";
 import { Link } from "react-router";
 import useAuthContext from "../hooks/useAuthContext";
+import Loader from "./Loader";
 
 
 const DonationRequests = () => {
-    const { user } = useAuthContext();
+    const { user, loading, setLoading } = useAuthContext();
   const [allRequest, setAllRequest] = useState([]);
 
   const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        if (!user) return 
+        setLoading(true)
+        if (!user) return; 
     axiosSecure.get("/pending-donations").then((res) => {
       console.log(res.data);
-      setAllRequest(res.data);
+        setAllRequest(res.data);
+        setLoading(false)
     });
-  }, [axiosSecure, user]);
+  }, [axiosSecure, setLoading, user]);
 
+    if(loading)return <Loader></Loader>
   return (
     <Container>
       <div className="flex flex-col justify-center items-center">
