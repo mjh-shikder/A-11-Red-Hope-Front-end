@@ -52,7 +52,7 @@ const Navbar = () => {
           to={"/search"}
           className={({ isActive }) =>
             isActive
-              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold flex items-center gap-0.5 "
+              ? "bg-primary text-white px-2.5 py-0 rounded-lg font-semibold flex items-center gap-0.5 "
               : "text-secondary font-semibold flex items-center gap-0.5"
           }
         >

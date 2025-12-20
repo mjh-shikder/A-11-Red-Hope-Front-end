@@ -59,7 +59,7 @@ const MyDonationRequest = () => {
           <tbody>
             {/* row  */}
             {myRequest.map((request, index) => (
-              <tr>
+              <tr key={request?._id}>
                 <th>{currentPage * 10 + (index + 1) - 10}</th>
                 <td>{request.recipientName}</td>
                 <td>
@@ -87,8 +87,8 @@ const MyDonationRequest = () => {
         <button onClick={handlePrev} className="btn rounded-l-xl">
           <FaArrowLeft />
         </button>
-        {pages.map((page) => (
-          <button
+        {pages.map((page, index) => (
+          <button key={index}
             onClick={() => setCurrentPage(page)}
             className={`btn ${
               page === currentPage ? "bg-primary text-white" : ""
