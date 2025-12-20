@@ -15,12 +15,11 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [typedEmail, setTypedEmail] = useState("");
   const [role, setRole] = useState("");
-  const [roleLoading, setRoleLoading] = useState(true)
+  const [roleLoading, setRoleLoading] = useState(true);
   const [upazilas, setUpazilas] = useState([]);
   const [districts, setDistricts] = useState([]);
-  const [userStatus, setUserStatus] = useState('')
+  const [userStatus, setUserStatus] = useState("");
   const [userDb, setUserDb] = useState(null);
-  
 
   useEffect(() => {
     axios.get("/upazila.json").then((res) => {
@@ -33,8 +32,6 @@ const AuthProvider = ({ children }) => {
       setDistricts(res.data.districts);
     });
   }, []);
-
-
 
   // Create user with email and password.
   const createUser = (email, password) => {
@@ -62,12 +59,14 @@ const AuthProvider = ({ children }) => {
   // Get the Role from DB
   useEffect(() => {
     if (!user) return;
-    axios.get(`http://localhost:5000/users/role/${user.email}`).then((res) => {
-      setRole(res.data.role);
-      setUserStatus(res.data.status);
-      setUserDb(res.data)
-      setRoleLoading(false)
-    });
+    axios
+      .get(`https://a-11-red-hope-back-end.vercel.app/users/role/${user.email}`)
+      .then((res) => {
+        setRole(res.data.role);
+        setUserStatus(res.data.status);
+        setUserDb(res.data);
+        setRoleLoading(false);
+      });
   }, [user]);
 
   // Logout
