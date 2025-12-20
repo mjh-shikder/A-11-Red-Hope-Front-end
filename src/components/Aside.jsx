@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
-import { Home, Users, Droplet, Settings, LogOut } from "lucide-react";
+import { Users, Droplet, Settings, LogOut } from "lucide-react";
+import { MdSpaceDashboard } from "react-icons/md";
 import { GoHome} from "react-icons/go";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaHandHoldingDroplet } from "react-icons/fa6";
@@ -64,7 +65,9 @@ const Aside = ({ children }) => {
             <Link to={"/"}>
               <img className="md:w-28 w-20 " src={logo} alt="" />
             </Link>
-            <p className="text-sm opacity-70">{role} Dashboard</p>
+            <p className="text-sm opacity-70 font-semibold ">
+              {role[0].toUpperCase() + role.slice(1)} Dashboard
+            </p>
           </div>
 
           {/* Menu */}
@@ -76,7 +79,7 @@ const Aside = ({ children }) => {
                   isActive ? "bg-primary text-white" : "bg-base-200"
                 }
               >
-                <GoHome size={20} /> Home
+                <MdSpaceDashboard size={20} /> Dashboard
               </NavLink>
             </li>
             <li>
@@ -114,7 +117,7 @@ const Aside = ({ children }) => {
                 </NavLink>
               </li>
             )}
-            <li className="mt-2">
+            {/* <li className="mt-2">
               <span className="menu-title">Settings</span>
               <ul>
                 <li>
@@ -128,12 +131,19 @@ const Aside = ({ children }) => {
                   </NavLink>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
 
           {/* Footer actions */}
           <div className="p-4 border-t border-base-300">
-            <button onClick={handleLogout} className="btn btn-primary  btn-outline w-full">
+            <Link to={"/"} className="btn btn-accent text-white  w-full mb-2.5">
+              <GoHome size={20} /> Home
+            </Link>
+
+            <button
+              onClick={handleLogout}
+              className="btn btn-primary  btn-outline w-full"
+            >
               <LogOut className="w-4 h-4" /> Logout
             </button>
           </div>

@@ -13,10 +13,13 @@ const RootLayout = () => {
           <Navbar></Navbar>
         </Container>
       </nav>
-      <Container className={"md:px-0 px-2"}>
+
       <Outlet></Outlet>
+
+      <Container className={"md:px-0 px-2"}>
         <Footer></Footer>
       </Container>
+
       <Toaster></Toaster>
     </div>
   );
