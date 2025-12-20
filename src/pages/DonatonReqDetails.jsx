@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAuthContext from "../hooks/useAuthContext";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { BiSolidDonateBlood } from "react-icons/bi";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import useAxios from "../hooks/useAxios";
 
 const DonatonReqDetails = () => {
-  const params = useParams();
+    const params = useParams();
+    const navigation = useNavigate()
   const dataId = params._id;
   const { user } = useAuthContext();
-  const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
+    const axiosInstance = useAxios()
   console.log("dataid===", dataId);
-
+const MySwal = withReactContent(Swal);
   const [detail, setDetails] = useState("");
 
   useEffect(() => {
@@ -27,7 +32,31 @@ const DonatonReqDetails = () => {
         console.log(err);
       });
   }, [axiosSecure, dataId, user]);
-  console.log("detail===", detail);
+    console.log("detail===", detail);
+    
+    // Confirm button function 
+    const handleConfirm = () => {
+
+
+       
+            axiosInstance.patch(`/update/donation/status?_id=${dataId}`)
+                .then(res => {
+                    console.log(res.data);
+                    navigation("/donation-requests");
+                    
+                
+            })
+     
+
+
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    }
 
   return (
     <Container>
@@ -107,9 +136,42 @@ const DonatonReqDetails = () => {
               </div>
             )}
             <div className="card-actions justify-end">
-              <button className="btn rounded-xl btn-accent text-white w-full">
-                <BiSolidDonateBlood size={20}/> Donate Now
+              {/* You can open the modal using document.getElementById('ID').showModal() method */}
+              <button
+                className="btn rounded-xl btn-accent text-white w-full"
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
+                <BiSolidDonateBlood size={20} /> Donate Now
               </button>
+              <dialog id="my_modal_3" className="modal">
+                <div className="modal-box">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      ✕
+                    </button>
+                  </form>
+                  <div className="flex flex-col justify-center items-center ">
+                    <label className="label ">Donor Name</label>
+                    <input
+                      type="text"
+                      value={user?.displayName}
+                      className="text-accent text-center border-accent input rounded-xl focus:outline-0"
+                    />
+                    <label className="label ">Donor Email</label>
+                    <input
+                      type="text"
+                      value={user?.email}
+                      className="text-accent text-center border-accent input rounded-xl focus:outline-0"
+                    />
+                    <button onClick={handleConfirm} className="btn btn-accent px-7 rounded-xl text-white mt-3.5">
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+              </dialog>
             </div>
           </div>
         </div>
