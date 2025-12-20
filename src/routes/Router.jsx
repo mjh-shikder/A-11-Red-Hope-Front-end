@@ -20,6 +20,7 @@ import PymentCancel from "../pages/PaymentCancel";
 import PaymentCancel from "../pages/PaymentCancel";
 import SearchPage from "../pages/SearchPage";
 import DonatonReqDetails from "../pages/DonatonReqDetails";
+import Profile from "../pages/dashboard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,11 @@ const router = createBrowserRouter([
       {
         path: "all-users",
         element: <AllUsers></AllUsers>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],

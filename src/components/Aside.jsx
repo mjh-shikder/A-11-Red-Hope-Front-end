@@ -10,6 +10,7 @@ import logo from "../assets/redHope.png";
 import useAuthContext from "../hooks/useAuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import { CgProfile } from "react-icons/cg";
 
 const Aside = ({ children }) => {
   const { role } = useAuthContext();
@@ -120,6 +121,17 @@ const Aside = ({ children }) => {
                 </NavLink>
               </li>
             )}
+            <li>
+              <NavLink
+                to="/dashboard/profile"
+                className={({ isActive }) =>
+                  isActive ? " bg-primary text-white" : ""
+                }
+              >
+                <CgProfile size={20} /> Profile
+              </NavLink>
+            </li>
+
             {/* <li className="mt-2">
               <span className="menu-title">Settings</span>
               <ul>
