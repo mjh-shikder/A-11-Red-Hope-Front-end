@@ -44,7 +44,7 @@ const Login = () => {
   };
 
     return (
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto mt-20">
+      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto my-20">
         <div className="card-body">
           <h1 className="text-3xl text-secondary font-bold text-center">
             Login

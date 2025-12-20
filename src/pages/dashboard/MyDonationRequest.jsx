@@ -22,10 +22,10 @@ const MyDonationRequest = () => {
   const numberOfPages = Math.ceil(totalRequest / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()].map((e) => e + 1);
 
-  console.log(myRequest);
-  console.log(totalRequest);
-  console.log(numberOfPages);
-    console.log(pages);
+  // console.log(myRequest);
+  // console.log(totalRequest);
+  // console.log(numberOfPages);
+  //   console.log(pages);
     
 
     const handlePrev = () => {

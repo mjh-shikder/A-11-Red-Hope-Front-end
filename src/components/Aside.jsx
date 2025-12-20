@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { Users, Droplet, Settings, LogOut } from "lucide-react";
 import { MdSpaceDashboard } from "react-icons/md";
 import { GoHome} from "react-icons/go";
@@ -14,8 +14,11 @@ import { auth } from "../firebase/firebase.config";
 const Aside = ({ children }) => {
   const { role } = useAuthContext();
 
+  const navigation = useNavigate()
+
   const handleLogout = () => {
     signOut(auth)
+    navigation('/')
   }
 
   return (
