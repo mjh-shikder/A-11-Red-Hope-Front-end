@@ -4,6 +4,7 @@ import Container from '../../components/Container';
 import Footer from '../../components/Footer';
 import Banner from './Banner';
 import Featured from './Featured';
+import ContactUs from './ContactUs';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <Banner></Banner>
             <Container>
                 <Featured></Featured>
+                <ContactUs></ContactUs>
             </Container>
         </div>
     );
