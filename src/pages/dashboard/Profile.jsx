@@ -5,40 +5,30 @@ import useAxios from "../../hooks/useAxios";
 import axios from "axios";
 
 const Profile = () => {
-  const {
-    user,
-    showPassword,
-    setShowPassword,
-    createUser,
-    districts,
-    setDistricts,
-    upazilas,
-    setUpazilas,
-    userDb,
-  } = useAuthContext();
+  const { user, districts, upazilas, userDb } = useAuthContext();
 
-    console.log(userDb);
-    console.log(user);
-    
-    
-  
+  // console.log(userDb);
+  // console.log(user);
+
+  const axiosInstance = useAxios();
+
   const [clicked, setClicked] = useState(false);
   const [editBtnclicked, seteditBtnclicked] = useState(true);
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
   const [blood, setBlood] = useState("");
-  const axiosInstance = useAxios();
-
-   
 
   // Handle submit button function
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
+        
+      
     const name = e.target.name.value;
-    const email = e.target.email.value;
+    // const email = e.target.email.value;
     const picture = e.target.picture;
     const file = picture.files[0];
     const bloodGroup = e.target.bloodGroup.value;
 
+    //   Image bb photo url
     const res = await axios
       .post(
         `https://api.imgbb.com/1/upload?key=182d20cdf18c4b37df6e1764dedce44a`,
@@ -52,20 +42,30 @@ const Profile = () => {
     const mainPhotoUrl = res.data.data.display_url;
 
     const formData = {
-      email,
+      
       name,
       mainPhotoUrl,
       blood,
       district,
       upazila,
-    };
+        };
+        
+        console.log(formData)
+        
 
-    console.log(formData);
+    axiosInstance
+      .patch(`/users/update/${userDb._id}`, formData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleUpdateProfile = () => {
-      setClicked(!clicked);
-      seteditBtnclicked(!editBtnclicked)
+    setClicked(!clicked);
+    seteditBtnclicked(!editBtnclicked);
   };
 
   return (
@@ -75,14 +75,15 @@ const Profile = () => {
           <div className="flex flex-col justify-center items-center space-y-3">
             <div className="avatar">
               <div className="w-24 rounded-full">
-                <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                <img src={userDb?.mainPhotoUrl} />
               </div>
             </div>
             <p className="text-2xl font-semibold text-primary text-center">
-              {user?.displayName}'s Profile
+              {userDb?.name}'s Profile
             </p>
           </div>
           {clicked ? (
+            //   Editable form
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col md:flex-row  md:gap-5">
                 <fieldset className="fieldset relative ">
@@ -93,7 +94,6 @@ const Profile = () => {
                     className="input rounded-xl focus:outline-0"
                     name="name"
                     placeholder="Your Name"
-                    required
                   />
                   {/* Email Feild */}
                   <label className="label">Email</label>
@@ -102,7 +102,8 @@ const Profile = () => {
                     className="input rounded-xl focus:outline-0"
                     name="email"
                     placeholder="Email"
-                    required
+                    readOnly
+                    disabled
                   />
                   {/* Photo url */}
                   <label className="label">Picture</label>
@@ -110,7 +111,6 @@ const Profile = () => {
                     type="file"
                     className="input rounded-xl focus:outline-0 "
                     name="picture"
-                    required
                   />
                 </fieldset>
                 <fieldset className="fieldset relative ">
@@ -119,7 +119,6 @@ const Profile = () => {
                   <select
                     name="bloodGroup"
                     value={blood}
-                    required
                     onChange={(e) => setBlood(e.target.value)}
                     className="select rounded-xl select-bordered focus:outline-0"
                   >
@@ -139,7 +138,6 @@ const Profile = () => {
                     value={district}
                     onChange={(e) => setDistrict(e.target.value)}
                     name="district"
-                    required
                     className="select rounded-xl select-bordered focus:outline-0 "
                   >
                     <option value="">Select District</option>
@@ -156,7 +154,6 @@ const Profile = () => {
                     value={upazila}
                     onChange={(e) => setUpazila(e.target.value)}
                     name="upazila"
-                    required
                     className="select rounded-xl select-bordered focus:outline-0 "
                   >
                     <option value="">Select Upazila</option>
@@ -175,7 +172,7 @@ const Profile = () => {
             </form>
           ) : (
             //   will show when is not editable
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="flex flex-col md:flex-row  md:gap-5">
                 <fieldset className="fieldset relative ">
                   {/* Name Feild */}
@@ -185,7 +182,8 @@ const Profile = () => {
                     className="input rounded-xl cursor-default focus:outline-0 "
                     name="name"
                     placeholder="Your Name"
-                    value={user?.displayName}
+                    value={userDb?.name}
+                    readOnly
                   />
                   {/* Email Feild */}
                   <label className="label">Email</label>
@@ -195,6 +193,7 @@ const Profile = () => {
                     name="email"
                     placeholder="Email"
                     value={user?.email}
+                    readOnly
                   />
                   {/* Photo url */}
                   <label className="label">Picture</label>
@@ -203,6 +202,7 @@ const Profile = () => {
                     className="input rounded-xl focus:outline-0 cursor-default"
                     name="picture"
                     value={userDb.mainPhotoUrl}
+                    readOnly
                   />
                 </fieldset>
                 <fieldset className="fieldset relative ">
@@ -214,6 +214,7 @@ const Profile = () => {
                     name="name"
                     placeholder="Your Name"
                     value={userDb.blood}
+                    readOnly
                   />
                   {/* Select District */}
                   <label className="label">Select District</label>
@@ -223,6 +224,7 @@ const Profile = () => {
                     name="name"
                     placeholder="Your Name"
                     value={userDb.district}
+                    readOnly
                   />
                   {/* Select Upazilas */}
                   <label className="label">Select Upazila</label>
@@ -232,6 +234,7 @@ const Profile = () => {
                     name="name"
                     placeholder="Your Name"
                     value={userDb.upazila}
+                    readOnly
                   />
                 </fieldset>
               </div>
