@@ -3,6 +3,7 @@ import useAuthContext from '../../hooks/useAuthContext';
 import Container from '../../components/Container';
 import Footer from '../../components/Footer';
 import Banner from './Banner';
+import Featured from './Featured';
 
 
 const Home = () => {
@@ -13,7 +14,10 @@ const Home = () => {
 
     return (
         <div>
-           <Banner></Banner>
+            <Banner></Banner>
+            <Container>
+                <Featured></Featured>
+            </Container>
         </div>
     );
 };
