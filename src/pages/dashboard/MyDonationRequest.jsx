@@ -69,7 +69,12 @@ const MyDonationRequest = () => {
                 <td>{request.donationDate}</td>
                 <td>{request.donationTime}</td>
                 <td>
-                  <Link className="btn btn-sm btn-accent text-white">View</Link>{" "}
+                  <Link
+                    to={`/donation-request-details/${request._id}`}
+                    className="btn btn-sm btn-accent text-white"
+                  >
+                    View
+                  </Link>{" "}
                 </td>
               </tr>
             ))}
@@ -88,7 +93,8 @@ const MyDonationRequest = () => {
           <FaArrowLeft />
         </button>
         {pages.map((page, index) => (
-          <button key={index}
+          <button
+            key={index}
             onClick={() => setCurrentPage(page)}
             className={`btn ${
               page === currentPage ? "bg-primary text-white" : ""

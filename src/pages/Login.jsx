@@ -79,12 +79,12 @@ const Login = () => {
                 )}
               </button>
               <div>
-                <Link
+                {/* <Link
                   to={"/forget-password"}
                   className="link link-hover text-secondary"
                 >
                   Forgot password?
-                </Link>
+                </Link> */}
                 {error && <p className="text-primary">{error}</p>}
               </div>
               <button className="btn btn-secondary mt-4 rounded-xl">

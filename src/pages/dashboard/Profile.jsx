@@ -3,6 +3,7 @@ import useAuthContext from "../../hooks/useAuthContext";
 import Container from "../../components/Container";
 import useAxios from "../../hooks/useAxios";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { user, districts, upazilas, userDb } = useAuthContext();
@@ -56,7 +57,9 @@ const Profile = () => {
     axiosInstance
       .patch(`/users/update/${userDb._id}`, formData)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
+        toast.success('Profile Updated')
+
       })
       .catch((err) => {
         console.log(err);

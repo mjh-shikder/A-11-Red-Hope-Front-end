@@ -61,8 +61,8 @@ const Banner = () => {
           </div>
           
 
-
-      <div className="absolute z-10 top-44 md:left-137.5 left-8 flex flex-col items-center space-y-5">
+{/* over lay */}
+      <div className="absolute z-10 top-44 md:left-160 left-8 flex flex-col items-center space-y-5">
         <h1 className=" md:text-5xl text-3xl text-white font-semibold">Be Someone's Hero Today</h1>
         <p className="text-white ">Your Blood Can Save a Life</p>
         <div className="flex gap-2.5 md:gap-5">

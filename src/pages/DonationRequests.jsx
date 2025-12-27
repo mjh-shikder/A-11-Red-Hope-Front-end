@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import Container from "../components/Container";
 import { Link } from "react-router";
 import useAuthContext from "../hooks/useAuthContext";
 import Loader from "./Loader";
+import useAxios from "../hooks/useAxios";
 
 
 const DonationRequests = () => {
-    const { user, loading, setLoading } = useAuthContext();
+  const { user, loading, setLoading } = useAuthContext();
   const [allRequest, setAllRequest] = useState([]);
 
-  const axiosSecure = useAxiosSecure();
+  
+  const axiosInstance = useAxios()
 
     useEffect(() => {
         setLoading(true)
         if (!user) return; 
-    axiosSecure.get("/pending-donations").then((res) => {
+    axiosInstance.get("/pending-donations").then((res) => {
       console.log(res.data);
         setAllRequest(res.data);
         setLoading(false)
     });
-  }, [axiosSecure, setLoading, user]);
+  }, [axiosInstance, setLoading, user]);
 
     if(loading)return <Loader></Loader>
   return (
