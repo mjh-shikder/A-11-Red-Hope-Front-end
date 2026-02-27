@@ -58,6 +58,7 @@ const Login = () => {
                 className="input rounded-xl focus:outline-0"
                 name="email"
                 placeholder="Email"
+                defaultValue={"admin@redhope.com"}
                 onChange={(e) => setTypedEmail(e.target.value)}
               />
               {/* Password Feild */}
@@ -66,6 +67,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 className="input rounded-xl focus:outline-0"
                 name="password"
+                defaultValue={"Admin777"}
                 placeholder="Password"
               />
               <button

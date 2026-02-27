@@ -7,10 +7,10 @@ const AboutUsPage = () => {
     <div className="min-h-screen bg-base-100 text-base-content">
       {/* Hero Section */}
       <div className="hero  text-primary-content py-20 bg-[url(https://images.unsplash.com/photo-1615461066159-fea0960485d5?q=80&w=1316&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] ">
-        <div className="hero-content text-center backdrop-blur-xl rounded-xl  ">
+        <div className="hero-content text-center backdrop-blur-md brightness-95 rounded-xl  ">
           <div className="max-w-2xl">
             <h1 className="text-5xl text-primary font-bold ">About Red Hope</h1>
-            <p className="py-6 text-lg text-gray-800 ">
+            <p className="py-6 text-lg text-gray-800 font-semibold ">
               Connecting heroes with those in need. Red Hope is a blood donation
               platform dedicated to saving lives by making blood donation
               simple, fast, and accessible.
