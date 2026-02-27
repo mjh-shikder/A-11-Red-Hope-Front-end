@@ -59,7 +59,7 @@ const Navbar = () => {
           <BiSearchAlt size={18} /> Search
         </NavLink>{" "}
       </li>
-      <li>
+      {user ?   <li>
         {" "}
         <NavLink
           to={"/funding"}
@@ -71,11 +71,27 @@ const Navbar = () => {
         >
           Funding
         </NavLink>{" "}
+      </li> : ""}
+    
+      <li>
+        {" "}
+        <NavLink
+          to={"/about-us"}
+          className={({ isActive }) =>
+            isActive
+              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
+              : "text-secondary font-semibold"
+          }
+        >
+          About Us
+        </NavLink>{" "}
       </li>
     </>
   );
+
+  // 
   return (
-    <div className="navbar bg-base-200 ">
+    <div className="navbar bg-base-200 md:px-5  ">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -108,7 +124,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to={"/"} className=" text-xl">
-          <img className="w-32" src={logo} alt="Logo" />
+          <img className="w-30" src={logo} alt="Logo" />
         </Link>
       </div>
       {/* desktop */}

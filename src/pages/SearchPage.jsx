@@ -108,7 +108,7 @@ const SearchPage = () => {
         <div className="">
           {filterdData.length == 0 && (
             <div className="flex justify-center mt-30 h-screen">
-              <h1 className="text-4xl font-bold text-gray-400">No Results</h1>
+              <h1 className="text-4xl font-bold text-gray-400">Search For Results</h1>
             </div>
           )}
           {filterdData && (

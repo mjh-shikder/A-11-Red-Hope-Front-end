@@ -15,7 +15,7 @@ const DonationRequests = () => {
 
     useEffect(() => {
         setLoading(true)
-        if (!user) return; 
+
     axiosInstance.get("/pending-donations").then((res) => {
       console.log(res.data);
         setAllRequest(res.data);

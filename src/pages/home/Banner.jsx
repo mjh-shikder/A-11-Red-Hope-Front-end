@@ -17,7 +17,7 @@ const Banner = () => {
           pagination={{ clickable: true }}
           loop={true}
           autoplay={{ delay: 5000 }}
-          className="h-125 my-5  "
+          className="h-125   "
         >
           <SwiperSlide className="rounded-2xl  ">
             <div className=" w-full h-full">
