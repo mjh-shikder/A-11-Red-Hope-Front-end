@@ -29,12 +29,12 @@ const Featured = () => {
                   and reach verified donors nearby within minutes.
                 </p>
                 <div className="card-actions mt-4">
-                  <Link
+                  {/* <Link
                     to="/dashboard/create-donation-request"
                     className="btn btn-primary text-white btn-sm"
                   >
                     Creat Request
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -49,12 +49,12 @@ const Featured = () => {
                   just a few clicks.
                 </p>
                 <div className="card-actions mt-4">
-                  <Link
+                  {/* <Link
                     to="/search"
                     className="btn btn-primary text-white btn-sm"
                   >
                     Search
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -69,12 +69,12 @@ const Featured = () => {
                   community.
                 </p>
                 <div className="card-actions mt-4">
-                  <Link
+                  {/* <Link
                     to="/register"
                     className="btn btn-primary text-white btn-sm"
                   >
                     Become a Donor
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
