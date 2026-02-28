@@ -37,7 +37,7 @@ const DonationRequests = () => {
           {allRequest.map((card) => (
             <div
               key={card?._id}
-              className="card card-border shadow-xl  w-96 rounded-xl 
+              className="card shadow-xl  w-96 rounded-xl 
               bg-base-100 border border-primary "
             >
               <div className="card-body hover:animate-pulse ">

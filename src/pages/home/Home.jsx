@@ -7,6 +7,7 @@ import Featured from './Featured';
 import ContactUs from './ContactUs';
 import Stats from './Stat';
 import Partners from './Partner';
+import Testimonial from './Testimonial';
 
 
 const Home = () => {
@@ -22,6 +23,7 @@ const Home = () => {
                 <Featured></Featured>
                 <Stats></Stats>
                 <Partners></Partners>
+                <Testimonial></Testimonial>
                 <ContactUs></ContactUs>
 
             </Container>

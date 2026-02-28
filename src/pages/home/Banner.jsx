@@ -78,7 +78,7 @@ const Banner = () => {
                 </p>
                 <div className="">
                   <Link
-                    className="btn rounded-xl bg-linear-to-l from-red-950 to-red-600 btn-lg text-white "
+                    className="btn px-11 rounded-xl bg-linear-to-l from-red-950 to-red-600 btn-lg text-white "
                     to={"/search"}
                   >
                     <Search></Search> Search

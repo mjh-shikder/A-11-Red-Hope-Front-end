@@ -5,7 +5,7 @@ import useAuthContext from "../hooks/useAuthContext";
 import Container from "../components/Container";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router";
-
+import toast from "react-hot-toast";
 
 const SearchPage = () => {
   const { upazilas, districts } = useAuthContext();
@@ -14,10 +14,8 @@ const SearchPage = () => {
   const [upazila, setUpazila] = useState("");
   const [blood, setBlood] = useState("");
   const [filterdData, setFilteredData] = useState([]);
-  
-  const axiosInstance = useAxios();
 
-  
+  const axiosInstance = useAxios();
 
   // search function
   const handleSearch = (e) => {
@@ -31,7 +29,7 @@ const SearchPage = () => {
 
     axiosInstance
       .get(
-        `/search?bloodGroup=${bloodGroup}&recipientDistrict=${recipientDistrict}&recipientUpazila=${recipientUpazila}`
+        `/search?bloodGroup=${bloodGroup}&recipientDistrict=${recipientDistrict}&recipientUpazila=${recipientUpazila}`,
       )
       .then((res) => {
         console.log(res.data);
@@ -42,9 +40,17 @@ const SearchPage = () => {
   return (
     <Container>
       <div className="px-1.5  md:px-0">
-        <h1 className="text-4xl font-bold text-primary text-center my-5">
-          Search Donors
-        </h1>
+        <div
+          className=" flex items-center justify-center h-80 bg-cover rounded-xl bg-center hue-rotate-18
+         bg-[url(https://images.unsplash.com/photo-1769776399336-37f4d5030f6b?q=80&w=1917&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+        >
+          <div className="backdrop-blur-sm brightness-90 rounded-xl md:px-10 md:py-3 ">
+            <h1 className="text-4xl font-bold text-white text-center my-5">
+              Search Donors
+            </h1>
+          </div>
+        </div>
+
         <form
           onSubmit={handleSearch}
           className="fieldset flex items-center justify-center my-10 "
@@ -108,7 +114,9 @@ const SearchPage = () => {
         <div className="">
           {filterdData.length == 0 && (
             <div className="flex justify-center mt-30 h-screen">
-              <h1 className="text-4xl font-bold text-gray-400">Search For Results</h1>
+              <h1 className="text-4xl font-bold text-gray-400">
+                Search For Results
+              </h1>
             </div>
           )}
           {filterdData && (
@@ -121,8 +129,9 @@ const SearchPage = () => {
 
                     <th>Location</th>
                     <th>Blood Group</th>
-                    
+
                     <th>Email</th>
+                    <th>Contact</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -147,18 +156,78 @@ const SearchPage = () => {
                       <td>
                         {donor.district[0].toUpperCase() +
                           donor.district.slice(1)}
-                        , {donor.upazila[0].toUpperCase() + donor.upazila.slice(1)}
+                        ,{" "}
+                        {donor.upazila[0].toUpperCase() +
+                          donor.upazila.slice(1)}
                       </td>
-                      <td>
-                        {donor.blood}
-                      </td>
+                      <td>{donor.blood}</td>
                       <td>{donor.email}</td>
-                      {/* button below */}
-                      {/* <td>
-                        <Link className="btn btn-sm btn-accent text-white">
-                          View
-                        </Link>{" "}
-                      </td> */}
+
+                      {/* Modal button below */}
+                      <td>
+                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+                        <button
+                          className="btn rounded-xl bgGreen text-white "
+                          onClick={() =>
+                            document.getElementById("my_modal_1").showModal()
+                          }
+                        >
+                          Contact Info
+                        </button>
+                        <dialog id="my_modal_1" className="modal">
+                          <div className="modal-box">
+                            <h3 className="font-bold text-lg text-center textRed ">
+                              Contact With Donor
+                            </h3>
+                            <div className="py-2 flex justify-between items-center border rounded-xl px-5 border-accent gap-2 my-3">
+                              <p className="font-bold">{donor.email}</p>
+                              <button
+                                type="button"
+                                className="btn btn-sm rounded-xl bgGreen text-white"
+                                onClick={async () => {
+                                  try {
+                                    await navigator.clipboard.writeText(
+                                      donor.email,
+                                    );
+                                    toast.success("Email copied!");
+                                  } catch (err) {
+                                    alert("Copy failed");
+                                  }
+                                }}
+                              >
+                                Copy
+                              </button>
+                            </div>
+                            <div className="py-2 flex justify-between items-center border rounded-xl px-5 border-accent gap-2">
+                              <p className="font-bold">+8801576624878</p>
+                              <button
+                                type="button"
+                                className="btn btn-sm rounded-xl bgGreen text-white"
+                                onClick={async () => {
+                                  try {
+                                    await navigator.clipboard.writeText(
+                                      "+8801576624878",
+                                    );
+                                    toast.success("Phone Number copied!");
+                                  } catch (err) {
+                                    alert("Copy failed");
+                                  }
+                                }}
+                              >
+                                Copy
+                              </button>
+                            </div>
+
+                            <div className="modal-action">
+                              <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn rounded-xl btn-primary btn-outline ">Close</button>
+                              </form>
+                            </div>
+                          </div>
+                        </dialog>
+                      </td>
+                      {/* --- */}
                     </tr>
                   ))}
                 </tbody>
