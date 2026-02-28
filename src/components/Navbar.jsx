@@ -26,7 +26,7 @@ const Navbar = () => {
           to={"/"}
           className={({ isActive }) =>
             isActive
-              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
+              ? "bg-linear-to-l from-red-950 to-red-600 text-white px-2.5 py-0.5 rounded-lg font-semibold  "
               : "text-secondary font-semibold"
           }
         >
@@ -39,7 +39,7 @@ const Navbar = () => {
           to={"/donation-requests"}
           className={({ isActive }) =>
             isActive
-              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
+              ? "bg-linear-to-l from-red-950 to-red-600 text-white px-2.5 py-0.5 rounded-lg font-semibold  "
               : "text-secondary font-semibold"
           }
         >
@@ -52,34 +52,38 @@ const Navbar = () => {
           to={"/search"}
           className={({ isActive }) =>
             isActive
-              ? "bg-primary text-white px-2.5 py-0 rounded-lg font-semibold flex items-center gap-0.5 "
+              ? "bg-linear-to-l from-red-950 to-red-600 text-white px-2.5 py-0 rounded-lg font-semibold flex items-center gap-0.5 "
               : "text-secondary font-semibold flex items-center gap-0.5"
           }
         >
           <BiSearchAlt size={18} /> Search
         </NavLink>{" "}
       </li>
-      {user ?   <li>
-        {" "}
-        <NavLink
-          to={"/funding"}
-          className={({ isActive }) =>
-            isActive
-              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
-              : "text-secondary font-semibold"
-          }
-        >
-          Funding
-        </NavLink>{" "}
-      </li> : ""}
-    
+      {user ? (
+        <li>
+          {" "}
+          <NavLink
+            to={"/funding"}
+            className={({ isActive }) =>
+              isActive
+                ? "bg-linear-to-l from-red-950 to-red-600 text-white px-2.5 py-0.5 rounded-lg font-semibold  "
+                : "text-secondary font-semibold"
+            }
+          >
+            Funding
+          </NavLink>{" "}
+        </li>
+      ) : (
+        ""
+      )}
+
       <li>
         {" "}
         <NavLink
           to={"/about-us"}
           className={({ isActive }) =>
             isActive
-              ? "bg-primary text-white px-2.5 py-0.5 rounded-lg font-semibold  "
+              ? "bg-linear-to-l from-red-950 to-red-600 text-white px-2.5 py-0.5 rounded-lg font-semibold  "
               : "text-secondary font-semibold"
           }
         >

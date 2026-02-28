@@ -8,7 +8,7 @@ const Featured = () => {
         <div className="max-w-6xl mx-auto px-4">
           {/* Section Heading */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-l from-red-950 to-red-600 bg-clip-text text-transparent">
               Why Choose Our Red Hope?
             </h2>
             <p className="mt-3 text-gray-500 max-w-xl mx-auto">

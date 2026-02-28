@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { Link } from "react-router";
+import { Search } from "lucide-react";
 const Banner = () => {
   return (
     <div className="  ">
@@ -24,15 +25,15 @@ const Banner = () => {
             <div className=" flex justify-center items-center w-full h-full bg-cover  bg-[url(https://images.unsplash.com/photo-1615461065624-21b562ee5566?q=80&w=1340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] ">
               <div
                 className="flex flex-col items-center space-y-5 
-      backdrop-blur-md rounded-xl brightness-90 saturate-120 px-10 py-8"
+                backdrop-blur-md rounded-xl brightness-90 saturate-120 px-10 py-8"
               >
                 <h1 className=" md:text-5xl text-3xl text-white font-semibold">
                   Need Emergency Blood?
                 </h1>
                 <p className="text-white ">Find The Donators Near you</p>
-                <div className="flex gap-2.5 md:gap-5">
+                <div className="">
                   <Link
-                    className="btn rounded-xl btn-primary btn-lg text-white"
+                    className="btn rounded-xl bg-linear-to-l from-red-950 to-red-600 btn-lg text-white  "
                     to={"/dashboard/create-donation-request"}
                   >
                     Request Donation
@@ -51,9 +52,9 @@ const Banner = () => {
                   Be Someone's Hero Today
                 </h1>
                 <p className="text-white ">Your Blood Can Save a Life</p>
-                <div className="flex gap-2.5 md:gap-5">
+                <div className="">
                   <Link
-                    className="btn  rounded-xl btn-primary btn-lg text-white"
+                    className="btn rounded-xl bg-linear-to-l from-green-900 to-green-600 btn-lg text-white"
                     to={"/register"}
                   >
                     Become a Donor
@@ -75,12 +76,12 @@ const Banner = () => {
                 <p className="text-white ">
                   Find the people who need blood right now
                 </p>
-                <div className="flex gap-2.5 md:gap-5">
+                <div className="">
                   <Link
-                    className="btn rounded-xl btn-accent btn-lg text-white "
+                    className="btn rounded-xl bg-linear-to-l from-red-950 to-red-600 btn-lg text-white "
                     to={"/search"}
                   >
-                    Search
+                    <Search></Search> Search
                   </Link>
                 </div>
               </div>

@@ -6,7 +6,7 @@ const Stats = () => {
     <div className="min-h-screen bg-base-100 text-base-content px-6 lg:px-20 py-16">
       {/* Page Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-primary">
+        <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-l from-red-950 to-red-600 bg-clip-text text-transparent ">
           Red Hope Impact
         </h1>
         <p className="mt-4 text-lg text-secondary max-w-2xl mx-auto">
@@ -61,14 +61,14 @@ const Stats = () => {
       </div>
 
       {/* Bottom Highlight Section */}
-      <div className="mt-20 bg-primary text-primary-content rounded-3xl p-10 text-center shadow-2xl">
+      <div className="mt-20 bg-linear-to-r from-red-950 to-red-700 bg-clip-text text-5xl font-extrabold text-transparent rounded-3xl p-10 text-center shadow-2xl">
         <h2 className="text-3xl font-bold mb-4">Every Drop Counts ❤️</h2>
         <p className="max-w-2xl mx-auto text-lg opacity-90">
           Red Hope continues to connect donors with patients in urgent need.
           Your contribution strengthens our mission and helps create a
           healthier, more compassionate world.
         </p>
-        <button className="btn bg-base-100 text-primary mt-6 hover:scale-105 transition-transform">
+        <button className="btn rounded-xl bg-base-100 text-primary mt-6 hover:scale-105 transition-transform">
           Join The Movement
         </button>
       </div>
