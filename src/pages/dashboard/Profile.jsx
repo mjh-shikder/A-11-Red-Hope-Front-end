@@ -169,7 +169,7 @@ const Profile = () => {
                   </select>
                 </fieldset>
               </div>
-              <button className="btn btn-primary mt-4 w-full rounded-xl">
+              <button className="btn bgRed text-white mt-4 w-full rounded-xl">
                 Update
               </button>
             </form>
@@ -249,7 +249,7 @@ const Profile = () => {
           {editBtnclicked ? (
             <button
               onClick={handleUpdateProfile}
-              className="btn btn-primary mt-4 w-full rounded-xl"
+              className="btn bgRed text-white mt-4 w-full rounded-xl"
             >
               Edit Profile
             </button>

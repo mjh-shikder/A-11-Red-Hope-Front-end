@@ -40,7 +40,7 @@ const DonationRequests = () => {
               className="card shadow-xl  w-96 rounded-xl 
               bg-base-100 border border-primary "
             >
-              <div className="card-body hover:animate-pulse ">
+              <div className="card-body  ">
                 <h2 className="text-2xl textRed font-bold ">
                   <span className="font-bold px-2 py-0.5 rounded-xl bgRed text-white">
                     {card.bloodGroup}

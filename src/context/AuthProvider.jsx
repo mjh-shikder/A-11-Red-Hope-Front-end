@@ -49,22 +49,34 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (!currentUser) {
+        setRole("");
+        setUserStatus("");
+        setUserDb(null);
+        setRoleLoading(false);
+      } else {
+        setRoleLoading(true);
+      }
       setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   // Get the Role from DB
   useEffect(() => {
     if (!user) return;
+    setRoleLoading(true);
     axios
       .get(`https://a-11-red-hope-back-end.vercel.app/users/role/${user.email}`)
       .then((res) => {
         setRole(res.data.role);
         setUserStatus(res.data.status);
         setUserDb(res.data);
+        setRoleLoading(false);
+      })
+      .catch(() => {
         setRoleLoading(false);
       });
   }, [user]);

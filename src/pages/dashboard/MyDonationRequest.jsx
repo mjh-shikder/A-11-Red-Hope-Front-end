@@ -42,6 +42,9 @@ const MyDonationRequest = () => {
 
   return (
     <div>
+      <h1 className="text-2xl font-bold textRed text-center py-5">
+        My Donation Requests
+      </h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -70,8 +73,8 @@ const MyDonationRequest = () => {
                 <td>{request.donationTime}</td>
                 <td>
                   <Link
-                    to={`/donation-request-details/${request._id}`}
-                    className="btn btn-sm btn-accent text-white"
+                    to={`/donation-requests-details/${request._id}`}
+                    className="btn btn-sm bgGreen text-white"
                   >
                     View
                   </Link>{" "}
@@ -88,6 +91,7 @@ const MyDonationRequest = () => {
                 }
                 <button className="btn">Next</button>
             </div> */}
+
       <div className="join flex items-center justify-center mt-6">
         <button onClick={handlePrev} className="btn rounded-l-xl">
           <FaArrowLeft />

@@ -5,16 +5,21 @@ import Loader from '../pages/Loader';
 
 const PrivateRoute = ({ children }) => {
 
-    const { loading, roleLoading, userStatus } = useAuthContext();
+    const { loading, roleLoading, user, userStatus } = useAuthContext();
     const location = useLocation();
 
-    if (loading  ) {
+    if (loading || (user && roleLoading)) {
       return <Loader></Loader>;
     }
 
-  //   if (user || userStatus == 'Active') {
-  //     return children;
-  // }
+  if (!user) {
+    return (
+      <Navigate state={location.pathname} to={"/login"}>
+        {" "}
+      </Navigate>
+    );
+  }
+
   if (userStatus === "Active") {
     return children;
   } 
@@ -28,11 +33,8 @@ const PrivateRoute = ({ children }) => {
       </div>
     );
   }
-    return (
-      <Navigate state={location.pathname} to={"/login"}>
-        {" "}
-      </Navigate>
-    );
+
+  return <Loader></Loader>;
 };
 
 export default PrivateRoute;

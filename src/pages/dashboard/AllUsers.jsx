@@ -87,14 +87,14 @@ const AllUsers = () => {
                   {user?.status == "Active" ? (
                     <button
                       onClick={() => handleStatusChange(user?.email, "Blocked")}
-                      className="btn btn-primary text-white btn-xs"
+                      className="btn bgRed text-white btn-xs"
                     >
                       Block
                     </button>
                   ) : (
                     <button
                       onClick={() => handleStatusChange(user?.email, "Active")}
-                      className="btn btn-accent text-white btn-xs"
+                      className="btn bgGreen text-white btn-xs"
                     >
                       Active
                     </button>
