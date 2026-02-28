@@ -143,6 +143,7 @@ const SearchPage = () => {
                           <div className="avatar">
                             <div className="mask mask-squircle h-12 w-12">
                               <img
+                                className="object-center "
                                 src={donor.mainPhotoUrl}
                                 alt="Avatar Tailwind CSS Component"
                               />
