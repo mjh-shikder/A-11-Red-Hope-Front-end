@@ -9,6 +9,23 @@
   font-family: "Roboto", sans-serif;
 }
 
+.bgGreen{
+  @apply bg-linear-to-l from-green-900 to-green-600
+}
+.bgRed{
+  @apply bg-linear-to-l from-red-950 to-red-600
+}
+
+.textGreen{
+  @apply bg-linear-to-l from-green-900 to-green-600 bg-clip-text text-transparent
+}
+
+.textRed{
+  @apply bg-linear-to-l from-red-950 to-red-600 bg-clip-text text-transparent
+}
+
+
+
 @plugin "daisyui/theme" {
   name: "light";
   default: true;

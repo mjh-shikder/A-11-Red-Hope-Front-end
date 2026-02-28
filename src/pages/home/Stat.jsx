@@ -1,5 +1,6 @@
 import React from "react";
 import { Droplet, HeartHandshake, Users } from "lucide-react";
+import { Link } from "react-router";
 
 const Stats = () => {
   return (
@@ -18,13 +19,13 @@ const Stats = () => {
       {/* Stats Section */}
       <div className="grid md:grid-cols-3 gap-8">
         {/* Total Donations */}
-        <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-primary/20">
+        <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-primary/20  hover:animate-pulse ">
           <div className="card-body items-center text-center">
-            <div className="p-4 rounded-full bg-primary/10 mb-4">
-              <Droplet className="text-primary" size={40} />
+            <div className="p-4 rounded-full  bgRed mb-4">
+              <Droplet className="text-white" size={40} />
             </div>
-            <h2 className="text-4xl font-bold text-primary">12,540+</h2>
-            <p className="text-secondary text-lg">Total Donations</p>
+            <h2 className="text-4xl font-bold textRed">12,540+</h2>
+            <p className="textRed text-lg">Total Donations</p>
             <div className="badge badge-primary badge-outline mt-3">
               Lives Saved Daily
             </div>
@@ -32,13 +33,13 @@ const Stats = () => {
         </div>
 
         {/* Total Donors */}
-        <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-accent/20">
+        <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-accent/20  hover:animate-pulse">
           <div className="card-body items-center text-center">
-            <div className="p-4 rounded-full bg-accent/10 mb-4">
-              <HeartHandshake className="text-accent" size={40} />
+            <div className="p-4 rounded-full bgGreen  mb-4">
+              <HeartHandshake className="text-white" size={40} />
             </div>
-            <h2 className="text-4xl font-bold text-accent">8,320+</h2>
-            <p className="text-secondary text-lg">Registered Donors</p>
+            <h2 className="text-4xl font-bold textGreen ">8,320+</h2>
+            <p className="textGreen text-lg">Registered Donors</p>
             <div className="badge badge-accent badge-outline mt-3">
               Community Heroes
             </div>
@@ -46,13 +47,13 @@ const Stats = () => {
         </div>
 
         {/* Active Users */}
-        <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-primary/20">
+        <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-primary/20  hover:animate-pulse">
           <div className="card-body items-center text-center">
-            <div className="p-4 rounded-full bg-primary/10 mb-4">
-              <Users className="text-primary" size={40} />
+            <div className="p-4 rounded-full bgRed mb-4">
+              <Users className="text-white" size={40} />
             </div>
-            <h2 className="text-4xl font-bold text-primary">5,780+</h2>
-            <p className="text-secondary text-lg">Active Users</p>
+            <h2 className="text-4xl font-bold textRed ">5,780+</h2>
+            <p className="textRed text-lg">Active Users</p>
             <div className="badge badge-primary badge-outline mt-3">
               Growing Every Day
             </div>
@@ -61,16 +62,19 @@ const Stats = () => {
       </div>
 
       {/* Bottom Highlight Section */}
-      <div className="mt-20 bg-linear-to-r from-red-950 to-red-700 bg-clip-text text-5xl font-extrabold text-transparent rounded-3xl p-10 text-center shadow-2xl">
-        <h2 className="text-3xl font-bold mb-4">Every Drop Counts ❤️</h2>
+      <div className="mt-20 text-5xl font-extrabold bg-linear-to-r from-red-900 via-red-700 to-red-900 rounded-3xl p-10 text-center shadow-2xl text-white">
+        <h2 className="text-3xl font-bold mb-4  ">Every Drop Counts ❤️</h2>
         <p className="max-w-2xl mx-auto text-lg opacity-90">
           Red Hope continues to connect donors with patients in urgent need.
           Your contribution strengthens our mission and helps create a
           healthier, more compassionate world.
         </p>
-        <button className="btn rounded-xl bg-base-100 text-primary mt-6 hover:scale-105 transition-transform">
+        <Link
+          to={"/register"}
+          className="btn rounded-xl bg-base-100 text-primary mt-6 hover:scale-105 transition-transform"
+        >
           Join The Movement
-        </button>
+        </Link>
       </div>
     </div>
   );

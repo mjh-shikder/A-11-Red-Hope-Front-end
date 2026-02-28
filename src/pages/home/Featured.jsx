@@ -18,12 +18,12 @@ const Featured = () => {
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
             {/* Feature 1 */}
-            <div className="card bg-base-100 shadow-md hover:shadow-lg transition">
-              <div className="card-body items-center text-center">
-                <FaHandHoldingHeart className="text-4xl text-accent mb-4" />
-                <h3 className="card-title">Need Blood?</h3>
+            <div className="card bg-base-100 shadow-md hover:shadow-lg transition textGreen  hover:animate-pulse">
+              <div className="card-body items-center text-center ">
+                <FaHandHoldingHeart className="text-4xl text-accent  mb-4  " />
+                <h3 className="card-title ">Need Blood?</h3>
                 <p className="text-sm text-gray-500">
                   If you or someone you love needs blood, create a request now
                   and reach verified donors nearby within minutes.
@@ -40,7 +40,7 @@ const Featured = () => {
             </div>
 
             {/* Feature 2 */}
-            <div className="card bg-base-100 shadow-md hover:shadow-lg transition">
+            <div className="card bg-base-100 shadow-md hover:shadow-lg transition textGreen  hover:animate-pulse">
               <div className="card-body items-center text-center">
                 <FaSearch className="text-4xl text-accent mb-4" />
                 <h3 className="card-title">Find Donors Easily</h3>
@@ -60,7 +60,7 @@ const Featured = () => {
             </div>
 
             {/* Feature 3 */}
-            <div className="card bg-base-100 shadow-md hover:shadow-lg transition">
+            <div className="card bg-base-100 shadow-md hover:shadow-lg transition textGreen hover:animate-pulse ">
               <div className="card-body items-center text-center">
                 <FaUserPlus className="text-4xl text-accent mb-4" />
                 <h3 className="card-title">Join as a Donor</h3>
