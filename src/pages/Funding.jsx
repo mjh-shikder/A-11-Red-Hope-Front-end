@@ -42,10 +42,21 @@ const Funding = () => {
 
   return (
     <Container>
-      <div>
+      <div className="">
+        <div
+          className=" flex items-center justify-center h-80 bg-cover rounded-xl bg-center hue-rotate-18
+         bg-[url(https://images.unsplash.com/photo-1624953187665-7d41d0ade16e?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+        >
+          <div className="backdrop-blur-sm brightness-90 rounded-xl md:px-10 md:py-3 ">
+            <h1 className="text-4xl font-bold text-gray-800 text-center my-5 ">
+              Support The Mission, Fund The Hope
+            </h1>
+          </div>
+        </div>
+
         <form
           onSubmit={handleCheckout}
-          className="flex items-center my-10 justify-center gap-5"
+          className="flex items-center mt-15 justify-center gap-5 "
         >
           <input
             name="donateAmount"
@@ -57,9 +68,12 @@ const Funding = () => {
             <BiSolidDonateHeart size={20} /> Donate Now
           </button>
         </form>
-        <h1 className="text-2xl font-bold textGreen text-center my-5">
-          List Of Fund Donators
+        <div className="flex justify-center items-center  my-15 rounded-xl  ">
+
+        <h1 className="text-4xl font-bold textGreen ">
+          List Of Our Fund Donators
         </h1>
+        </div>
         {/* ====================Table ============================== */}
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-20 ">
           <table className="table  ">

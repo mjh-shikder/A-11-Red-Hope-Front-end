@@ -22,6 +22,7 @@ import SearchPage from "../pages/SearchPage";
 import DonatonReqDetails from "../pages/DonatonReqDetails";
 import Profile from "../pages/dashboard/Profile";
 import AboutUsPage from "../pages/AboutUsPage";
+import TestimonilaPage from "../pages/home/TestimonilaPage";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,11 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage></SearchPage>,
+        hydrateFallbackElement: <Loader></Loader>,
+      },
+      {
+        path: "/testimonial",
+        element: <TestimonilaPage></TestimonilaPage>,
         hydrateFallbackElement: <Loader></Loader>,
       },
     ],

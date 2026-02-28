@@ -35,7 +35,7 @@ const Register = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  const {user} = useAuthContext()
   useEffect(() => {
     axios.get("./upazila.json").then((res) => {
       // console.log(res.data.upazilas);
@@ -139,7 +139,15 @@ const Register = () => {
       setIsSubmitting(false);
     }
   };
+  if (user) return (
+    <div className="text-4xl font-semibold min-h-dvh flex flex-col  items-center justify-center ">
+      <div className="bgRed flex flex-col items-center justify-center space-y-5  px-10 py-5 rounded-xl text-white">
 
+      <h1>Thank You!</h1> 
+      <h1>You Have Already Registerd</h1>
+      </div>
+    </div>
+  );
   if(isSubmitting) return <Loader></Loader>
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto mt-40 mb-40">

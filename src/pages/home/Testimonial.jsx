@@ -1,5 +1,6 @@
 import React from "react";
 import { Quote, Heart, Users } from "lucide-react";
+import { Link } from "react-router";
 
 const Testimonial = () => {
   const testimonials = [
@@ -8,21 +9,21 @@ const Testimonial = () => {
       role: "Blood Recipient",
       message:
         "Red Hope helped me find a donor within hours during an emergency. I will forever be grateful to this amazing community.",
-      icon: <Heart className="textRed" size={28} />,
+      icon: <Heart className="text-primary" size={28} />,
     },
     {
       name: "Rahim Uddin",
       role: "Regular Donor",
       message:
         "Donating blood through Red Hope is simple and organized. It feels incredible knowing I can save lives so easily.",
-      icon: <Users className="textGreen" size={28} />,
+      icon: <Users className="text-primary" size={28} />,
     },
     {
       name: "City Care Hospital",
       role: "Medical Partner",
       message:
         "Red Hope has streamlined urgent blood requests for our patients. Their platform makes coordination fast and reliable.",
-      icon: <Quote className="textRed" size={28} />,
+      icon: <Quote className="text-primary" size={28} />,
     },
   ];
 
@@ -68,9 +69,12 @@ const Testimonial = () => {
           Have you donated or received blood through Red Hope? Inspire others by
           sharing your experience with our community.
         </p>
-        <button className="btn mt-6 bg-base-100 textRed rounded-xl hover:scale-105 transition-transform">
+        <Link
+          to={"/testimonial"}
+          className="btn mt-6 bg-base-100 textRed rounded-xl hover:scale-105 transition-transform"
+        >
           Submit Testimonial
-        </button>
+        </Link>
       </div>
     </div>
   );
