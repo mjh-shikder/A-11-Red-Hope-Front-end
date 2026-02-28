@@ -6,6 +6,7 @@ import Banner from './Banner';
 import Featured from './Featured';
 import ContactUs from './ContactUs';
 import Stats from './Stat';
+import Partners from './Partner';
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
             <Container>
                 <Featured></Featured>
                 <Stats></Stats>
+                <Partners></Partners>
                 <ContactUs></ContactUs>
 
             </Container>

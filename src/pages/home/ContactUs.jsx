@@ -14,7 +14,7 @@ const ContactUs = () => {
           <div className="max-w-6xl mx-auto px-4">
             {/* Section Heading */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-primary">Contact Us</h2>
+              <h2 className="text-4xl md:text-5xl  font-bold textRed ">Contact Us</h2>
               <p className="mt-3 text-gray-500 max-w-xl mx-auto">
                 Have questions, need help, or want to get in touch? We’re here
                 to support you.
@@ -50,8 +50,8 @@ const ContactUs = () => {
               </div>
 
               {/* Contact Form */}
-              <div className="card bg-base-100 shadow-md">
-                <div className="card-body">
+              <div className="card bg-base-100 shadow-md rounded-xl">
+                <div className="card-body ">
                   <h3 className="text-xl font-semibold mb-4">
                     Send us a message
                   </h3>
@@ -60,25 +60,25 @@ const ContactUs = () => {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="input input-bordered w-full focus:outline-0"
+                      className="input input-bordered w-full rounded-xl focus:outline-0"
                       required
                     />
 
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="input input-bordered w-full focus:outline-0"
+                      className="input input-bordered w-full rounded-xl focus:outline-0"
                       required
                     />
 
                     <textarea
                       placeholder="Your Message"
-                      className="textarea textarea-bordered w-full focus:outline-0"
+                      className="textarea textarea-bordered w-full rounded-xl focus:outline-0"
                       rows="4"
                       required
                     ></textarea>
 
-                    <button className="btn btn-primary w-full">
+                    <button className="btn bgRed rounded-xl text-white w-full">
                       Send Message
                     </button>
                   </form>

@@ -25,7 +25,7 @@ const DonationRequests = () => {
   return (
     <Container>
       <div className="flex flex-col justify-center items-center">
-        <div className="w-full h-75 rounded-xl flex items-center justify-center bg-cover bg-center bg-[url(https://cdn.pixabay.com/photo/2020/01/31/06/40/red-blood-cell-4807214_1280.jpg)] ">
+        <div className="w-full h-80 rounded-xl flex items-center justify-center bg-cover bg-center bg-[url(https://cdn.pixabay.com/photo/2020/01/31/06/40/red-blood-cell-4807214_1280.jpg)] ">
           <div className="backdrop-blur-sm brightness-90 rounded-xl md:px-10 md:py-4 ">
             <h1 className="text-4xl font-bold text-white text-center my-5">
               Blood Donation Request

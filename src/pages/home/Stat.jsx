@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const Stats = () => {
   return (
-    <div className="min-h-screen bg-base-100 text-base-content px-6 lg:px-20 py-16">
+    <div className="min-h-screen bg-base-100 text-base-content px-6 lg:px-20 py-16 rounded-xl">
       {/* Page Header */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-l from-red-950 to-red-600 bg-clip-text text-transparent ">
@@ -26,7 +26,7 @@ const Stats = () => {
             </div>
             <h2 className="text-4xl font-bold textRed">12,540+</h2>
             <p className="textRed text-lg">Total Donations</p>
-            <div className="badge badge-primary badge-outline mt-3">
+            <div className="badge badge-secondary badge-outline mt-3">
               Lives Saved Daily
             </div>
           </div>
@@ -35,12 +35,12 @@ const Stats = () => {
         {/* Total Donors */}
         <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 border border-accent/20  hover:animate-pulse">
           <div className="card-body items-center text-center">
-            <div className="p-4 rounded-full bgGreen  mb-4">
+            <div className="p-4 rounded-full bgRed  mb-4">
               <HeartHandshake className="text-white" size={40} />
             </div>
-            <h2 className="text-4xl font-bold textGreen ">8,320+</h2>
-            <p className="textGreen text-lg">Registered Donors</p>
-            <div className="badge badge-accent badge-outline mt-3">
+            <h2 className="text-4xl font-bold textRed ">8,320+</h2>
+            <p className="textRed text-lg">Registered Donors</p>
+            <div className="badge badge-secondary badge-outline mt-3">
               Community Heroes
             </div>
           </div>
@@ -54,7 +54,7 @@ const Stats = () => {
             </div>
             <h2 className="text-4xl font-bold textRed ">5,780+</h2>
             <p className="textRed text-lg">Active Users</p>
-            <div className="badge badge-primary badge-outline mt-3">
+            <div className="badge badge-secondary badge-outline mt-3">
               Growing Every Day
             </div>
           </div>
