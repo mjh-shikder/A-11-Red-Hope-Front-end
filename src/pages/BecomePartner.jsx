@@ -1,9 +1,12 @@
 import React from 'react';
+import Container from '../components/Container';
 
 const BecomePartner = () => {
     return (
         <div>
-            Become a partner
+            <Container>
+                Patner page
+            </Container>
         </div>
     );
 };
