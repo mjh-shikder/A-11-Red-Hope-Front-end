@@ -53,11 +53,11 @@ const Funding = () => {
             placeholder="Donation Amount"
             className="input rounded-xl border-accent text-accent focus:outline-0"
           />
-          <button className="btn rounded-xl btn-accent text-white">
+          <button className="btn rounded-xl bgGreen text-white">
             <BiSolidDonateHeart size={20} /> Donate Now
           </button>
         </form>
-        <h1 className="text-2xl font-bold text-primary text-center my-5">
+        <h1 className="text-2xl font-bold textGreen text-center my-5">
           List Of Fund Donators
         </h1>
         {/* ====================Table ============================== */}

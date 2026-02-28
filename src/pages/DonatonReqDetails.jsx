@@ -61,12 +61,12 @@ const MySwal = withReactContent(Swal);
   return (
     <Container>
       <div className="w-full flex flex-col items-center justify-center md:mb-20 mb-10">
-        <h1 className="text-4xl font-bold text-primary text-center my-10">
+        <h1 className="text-4xl font-bold textRed text-center my-10">
           Donation Request Details
         </h1>
         <div className=" rounded-xl bg-base-100 md:w-6/12 ">
           <div className="card-body">
-            <h2 className="text-xl font-semibold  text-center ">
+            <h2 className="text-xl font-bold textRed text-center ">
               Recipient Details
             </h2>
             {detail && (
@@ -138,7 +138,7 @@ const MySwal = withReactContent(Swal);
             <div className="card-actions justify-end">
               {/* You can open the modal using document.getElementById('ID').showModal() method */}
               <button
-                className="btn rounded-xl btn-accent text-white w-full"
+                className="btn rounded-xl bgGreen text-white w-full"
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
                 }
