@@ -1,5 +1,6 @@
 import React from "react";
 import { Building2, HeartHandshake, ShieldCheck } from "lucide-react";
+import { Link } from "react-router";
 
 const Partners = () => {
   const partners = [
@@ -50,9 +51,7 @@ const Partners = () => {
                 {partner.icon}
               </div>
             </div>
-            <h3 className="text-xl font-semibold textRed ">
-              {partner.name}
-            </h3>
+            <h3 className="text-xl font-semibold textRed ">{partner.name}</h3>
             <p className="text-secondary textRed mt-2">{partner.type}</p>
             <div className="mt-4 badge badge-accent badge-outline rounded-xl">
               Verified Partner
@@ -68,9 +67,12 @@ const Partners = () => {
           Join Red Hope’s growing network of trusted institutions and help us
           make blood donation more accessible, reliable, and life-saving.
         </p>
-        <button className="btn bg-base-100 text-accent mt-6 rounded-xl hover:scale-105 transition-transform">
+        <Link
+          to={"/partner"}
+          className="btn bg-base-100 text-accent mt-6 rounded-xl hover:scale-105 transition-transform"
+        >
           Partner With Us
-        </button>
+        </Link>
       </div>
     </div>
   );
