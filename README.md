@@ -4,7 +4,7 @@ RedHope is a modern web-based blood donation platform designed to connect donors
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Link
 https://dulcet-biscotti-7b5c0b.netlify.app/
 
 
